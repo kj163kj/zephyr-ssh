@@ -2563,6 +2563,13 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .data-settings-section .data-import-form { margin-top: 0; }
 .data-settings-section .webdav-heading { margin-bottom: 0; }
 .data-settings-section .webdav-settings-form { margin-bottom: 0; }
+/* 数据管理：导出/导入卡片表单精修 */
+.data-settings-section > .btn { width: 100%; }
+.data-import-form { max-width: none; margin: 0; display: grid; gap: 12px; }
+.data-file-field { display: grid; gap: 6px; }
+.data-file-field input[type="file"] { width: 100%; box-sizing: border-box; padding: 9px 12px; border: 1px solid color-mix(in srgb, var(--text-secondary) 72%, var(--border)); border-radius: var(--radius-control); background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--text-secondary); font-size: 13px; }
+.data-file-field input[type="file"]:hover { border-color: color-mix(in srgb, var(--text-secondary) 88%, var(--border)); }
+.data-file-field input[type="file"]::file-selector-button { margin-right: 10px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font: 500 12px/1.2 var(--font-sans); cursor: pointer; }
 .settings-form .form-actions {
     display: grid;
     grid-template-columns: 1fr;
