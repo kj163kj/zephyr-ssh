@@ -2564,7 +2564,12 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .data-settings-section .webdav-heading { margin-bottom: 0; }
 .data-settings-section .webdav-settings-form { margin-bottom: 0; }
 /* 数据管理：导出/导入卡片表单精修 */
+.data-settings-section { gap: 14px; }
 .data-settings-section > .btn { width: 100%; }
+.data-settings-section .about-head { margin-bottom: 0; }
+.webdav-heading-copy { display: grid; gap: 4px; min-width: 0; }
+.webdav-heading .about-head { margin-bottom: 0; }
+.webdav-heading .about-title h2 { font-size: 18px; }
 .data-import-form { max-width: none; margin: 0; display: grid; gap: 12px; }
 .data-file-field { display: grid; gap: 6px; }
 .data-file-field input[type="file"] { width: 100%; box-sizing: border-box; padding: 9px 12px; border: 1px solid color-mix(in srgb, var(--text-secondary) 72%, var(--border)); border-radius: var(--radius-control); background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--text-secondary); font-size: 13px; }
