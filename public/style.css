@@ -2465,6 +2465,32 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
     background: color-mix(in srgb, var(--surface) 96%, transparent);
     box-shadow: inset 0 0 0 1px var(--accent);
 }
+/* TOTP 开启表单：二维码与密钥在容器内居中 */
+#totpQrBox {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+}
+#totpQrBox .qr-img {
+    display: block;
+    width: 168px;
+    height: auto;
+    padding: 8px;
+    border-radius: 8px;
+    background: #fff;
+}
+#totpQrBox p.muted {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-all;
+}
 .settings-form .form-actions {
     display: grid;
     grid-template-columns: 1fr;
