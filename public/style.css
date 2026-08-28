@@ -2495,7 +2495,7 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 /* 邮件通知：主机/端口 左右贴合合并成一条，外侧圆角、接缝共用边框 */
 .mail-host-row { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 0; }
 .mail-host-row > .form-group { margin: 0; }
-.mail-host-row > .form-group:not(:first-child) { margin-left: -1px; }
+.mail-host-row > .form-group:not(:first-child) { margin-left: -1px; margin-top: 0; }
 .mail-host-row > .form-group:focus-within { z-index: 2; }
 .mail-host-row > .form-group input { border-radius: 0; }
 .mail-host-row > .form-group:first-child input { border-radius: 12px 0 0 12px; }
