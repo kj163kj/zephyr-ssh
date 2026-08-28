@@ -2421,6 +2421,8 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .security-input-stack > .form-group:first-child input { border-radius: 12px 12px 0 0; }
 .security-input-stack > .form-group:last-child input { border-radius: 0 0 12px 12px; }
 .security-input-stack > .form-group:only-child input { border-radius: 12px; }
+/* 末尾隐藏行（如 TOTP 备用行）不参与合并圆角：底部圆角由其前一个可见行承担 */
+.security-input-stack > .form-group:not(.force-hidden):has(> input):has(+ .form-group.force-hidden) input { border-radius: 0 0 12px 12px; }
 .security-card .mini-list { margin-bottom: 0; }
 .security-card > .settings-switch-option { margin: 0; }
 .security-card .settings-form > .settings-switch-option { margin: 0; }
@@ -2430,11 +2432,14 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .security-card:has(#bruteForceEnabled:not(:checked)) [data-needs="brute-force"],
 .security-card:has(#captchaEnabled:not(:checked)) [data-needs="captcha"] { opacity: .45; pointer-events: none; }
 .security-field-label { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.4; }
-/* 防爆破双列数字输入：保持浮动标签样式，仅改布局 */
+/* 防爆破双列数字输入：左右并排，各自独立圆角（不参与 stack 的首尾合并圆角） */
 .security-input-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .security-input-duo > .form-group { margin-bottom: 0; }
 .security-input-duo > .form-group:not(:first-child) { margin-top: 0; }
-.security-input-duo > .form-group input { border-radius: 12px; }
+.security-input-duo > .form-group input { border-radius: var(--radius-control); }
+.security-input-duo > .form-group:first-child input,
+.security-input-duo > .form-group:last-child input,
+.security-input-duo > .form-group:only-child input { border-radius: var(--radius-control); }
 /* 浮动标签延伸到 textarea（白名单 IP 列表）；标签锚定首行而非容器中点 */
 .security-input-stack > .form-group:has(textarea) label { top: 36px; }
 .security-input-stack > .form-group:has(textarea:focus) label,
@@ -2447,7 +2452,7 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
     min-height: 92px;
     padding: 26px 15px 10px;
     border-color: color-mix(in srgb, var(--text-secondary) 72%, var(--border));
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     font-family: var(--font-mono);
     font-size: 13px;
