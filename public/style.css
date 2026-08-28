@@ -2536,6 +2536,33 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
     form.settings-form .form-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .settings-form .form-actions .btn:only-child { grid-column: 1 / -1; }
+/* Zephyr Client：卡片分区 + 内部呼吸感 */
+#settings-agent.active { display: grid; gap: 14px; align-content: start; }
+#settings-agent .security-card { padding: 20px; display: grid; gap: 12px; align-content: start; }
+#settings-agent .security-card > h2 { margin: 0; }
+#settings-agent .security-card > .muted { margin: 0; max-width: 720px; line-height: 1.55; }
+#settings-agent .security-card > .agent-token-actions { margin: 0; }
+#settings-agent .security-card > .agent-token-list { margin: 0; }
+#settings-agent .security-card > .agent-connect-info { max-width: none; }
+/* 数据管理：区块升级为卡片 */
+.data-settings-stack { gap: 14px; }
+.data-settings-section {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    display: grid;
+    gap: 12px;
+    align-content: start;
+}
+.data-settings-section + .data-settings-section { padding-top: 20px; }
+.data-settings-section > h2 { margin: 0; }
+.data-settings-section > .muted { margin: 0; }
+.data-settings-section > .field-hint { margin: 0; }
+.data-settings-section .data-import-form { margin-top: 0; }
+.data-settings-section .webdav-heading { margin-bottom: 0; }
+.data-settings-section .webdav-settings-form { margin-bottom: 0; }
 .settings-form .form-actions {
     display: grid;
     grid-template-columns: 1fr;
