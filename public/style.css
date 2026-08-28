@@ -2539,8 +2539,6 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .settings-form .form-actions .btn:only-child { grid-column: 1 / -1; }
 /* Zephyr Client：卡片分区 + 内部呼吸感 */
 #settings-agent.active { display: grid; gap: 14px; align-content: start; }
-/* 数据管理：内容不等高，取消两列等高拉伸避免空白 */
-#settings-data .security-card-row { align-items: start; }
 #settings-agent .security-card { padding: 20px; display: grid; gap: 12px; align-content: start; }
 #settings-agent .security-card > h2 { margin: 0; }
 #settings-agent .security-card > .muted { margin: 0; max-width: 720px; line-height: 1.55; }
@@ -2557,7 +2555,6 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
     background: var(--surface);
     display: grid;
     gap: 14px;
-    align-content: start;
 }
 #settings-data .data-settings-section + .data-settings-section { padding-top: 20px; }
 #settings-data .data-settings-section > h2 { margin: 0; font-size: 16px; }
@@ -2570,10 +2567,19 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .data-settings-section { gap: 14px; }
 .data-settings-section > .btn { width: 100%; }
 .data-settings-section .about-head { margin-bottom: 0; }
+/* 两卡等高：短卡内容随栅格均匀分布，避免一大一小 */
+#settings-data .security-card-row { align-items: stretch; }
 .webdav-heading-copy { display: grid; gap: 4px; min-width: 0; }
 .webdav-heading .about-head { margin-bottom: 0; }
 .webdav-heading .about-title h2 { font-size: 18px; }
 .data-import-form { max-width: none; margin: 0; display: grid; gap: 12px; }
+/* WebDAV 操作按钮：按内容自适应宽度，不再三等分拉满 */
+.webdav-settings-form .webdav-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; grid-template-columns: none; }
+.webdav-settings-form .webdav-actions .btn { flex: 0 0 auto; width: auto; white-space: nowrap; }
+@media (max-width: 760px) {
+    .webdav-settings-form .webdav-actions { flex-direction: column; align-items: stretch; }
+    .webdav-settings-form .webdav-actions .btn { width: 100%; }
+}
 .data-file-field { display: grid; gap: 6px; }
 .data-file-field input[type="file"] { width: 100%; box-sizing: border-box; padding: 9px 12px; border: 1px solid color-mix(in srgb, var(--text-secondary) 72%, var(--border)); border-radius: var(--radius-control); background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--text-secondary); font-size: 13px; }
 .data-file-field input[type="file"]:hover { border-color: color-mix(in srgb, var(--text-secondary) 88%, var(--border)); }
