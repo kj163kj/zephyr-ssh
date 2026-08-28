@@ -2492,10 +2492,14 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
     line-height: 1.5;
     word-break: break-all;
 }
-/* 邮件通知：主机/端口 双列输入 */
-.mail-host-row { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 10px; }
+/* 邮件通知：主机/端口 左右贴合合并成一条，外侧圆角、接缝共用边框 */
+.mail-host-row { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 0; }
 .mail-host-row > .form-group { margin: 0; }
-.mail-host-row > .form-group input { border-radius: var(--radius-control); }
+.mail-host-row > .form-group:not(:first-child) { margin-left: -1px; }
+.mail-host-row > .form-group:focus-within { z-index: 2; }
+.mail-host-row > .form-group input { border-radius: 0; }
+.mail-host-row > .form-group:first-child input { border-radius: 12px 0 0 12px; }
+.mail-host-row > .form-group:last-child input { border-radius: 0 12px 12px 0; }
 /* 紧凑型开关行（无说明文案，如 SSL/TLS） */
 .settings-switch-option-sm { min-height: 48px; padding: 8px 13px; }
 /* 关于页卡片 */
