@@ -2427,11 +2427,17 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .security-card > .settings-switch-option { margin: 0; }
 .security-card .settings-form > .settings-switch-option { margin: 0; }
 /* 开关从属字段：开关关闭时整体降透明度并禁用交互，开启时 200ms ease-smooth 过渡回来 */
-.security-card .settings-form > .switch-dependent { display: grid; gap: 10px; transition: opacity 200ms var(--ease-smooth); }
+.security-card .switch-dependent { display: grid; gap: 10px; transition: opacity 200ms var(--ease-smooth); }
 .security-card:has(#ipWhitelistEnabled:not(:checked)) [data-needs="ip-whitelist"],
 .security-card:has(#bruteForceEnabled:not(:checked)) [data-needs="brute-force"],
 .security-card:has(#captchaEnabled:not(:checked)) [data-needs="captcha"],
-.security-card:has(#mailEnabled:not(:checked)) [data-master="mailEnabled"] { opacity: .45; pointer-events: none; }
+.security-card:has(#mailEnabled:not(:checked)) [data-master="mailEnabled"],
+.security-card:has(#terminalFontColorEnabled:not(:checked)) [data-master="terminalFontColorEnabled"],
+.security-card:has(#terminalSolidBgEnabled:not(:checked)) [data-master="terminalSolidBgEnabled"],
+.security-card:has(#terminalSelectionEnabled:not(:checked)) [data-master="terminalSelectionEnabled"] { opacity: .45; pointer-events: none; }
+/* 反向联动：自动深浅模式开启时，「深浅模式」选择器被接管，降透明度禁用 */
+.theme-mode-dependent { transition: opacity 200ms var(--ease-smooth); }
+.security-card:has(#autoThemeEnabled:checked) .theme-mode-dependent { opacity: .45; pointer-events: none; }
 .security-field-label { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.4; }
 /* 防爆破双列数字输入：左右并排，各自独立圆角（不参与 stack 的首尾合并圆角） */
 .security-input-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -2514,6 +2520,10 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 /* 设置面板裸标签层级：小号次级文字，与开关行/浮动标签形成对比 */
 .settings-panel .settings-form > label:not(.check-line):not(.settings-switch-option):not(.settings-switch-option-sm) { margin: 4px 0 -4px; color: var(--text-secondary); font-size: 13px; }
 .settings-panel .settings-form > h3 { margin: 14px 0 2px; }
+.settings-panel .security-card > label:not(.settings-switch-option):not(.check-line) { margin: 4px 0 -4px; color: var(--text-secondary); font-size: 13px; }
+/* 个性化设置：卡片化布局，表单解除 420px 宽度限制 */
+.appearance-cards-form { max-width: none; margin-bottom: 0; display: grid; gap: 14px; }
+#settings-appearance .appearance-cards-form + .appearance-cards-form { margin-top: 14px; }
 .settings-form .form-actions {
     display: grid;
     grid-template-columns: 1fr;

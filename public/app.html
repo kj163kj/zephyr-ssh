@@ -457,143 +457,166 @@
                              </div>
                         </div>
                         <div class="settings-panel" id="settings-appearance">
-                            <h2 data-i18n="个性化设置">个性化设置</h2>
-                            <form id="appearanceForm" class="settings-form">
-                                <label class="settings-switch-option" for="sessionPersistenceEnabled">
-                                    <span class="settings-switch-copy"><strong data-i18n="会话持久化">会话持久化</strong><small data-i18n="关闭页面后再次打开时，恢复之前的页面和会话。">关闭页面后再次打开时，恢复之前的页面和会话。</small></span>
-                                    <span class="connection-share-switch"><input type="checkbox" id="sessionPersistenceEnabled" checked><span aria-hidden="true"></span></span>
-                                </label>
-                                <div class="security-input-stack">
-                                    <div class="form-group"><label for="brandNameInput" data-i18n="左上角标题">左上角标题</label><input id="brandNameInput" maxlength="40" placeholder=" "></div>
-                                </div>
-                                <label data-i18n="左上角图标">左上角图标</label>
-                                <div class="brand-upload-row">
-                                    <div class="brand-icon-preview" id="brandIconPreview" aria-label="当前图标" data-i18n-aria-label="当前图标">🌬️</div>
-                                    <input id="brandIconFile" type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml">
-                                </div>
-                                <p class="field-hint" data-i18n="图标支持上传常见图片格式，建议使用正方形 PNG/SVG；保存后会同步到页面标题、favicon 与登录页。">图标支持上传常见图片格式，建议使用正方形 PNG/SVG；保存后会同步到页面标题、favicon 与登录页。</p>
-                                <label data-i18n="配色方案">配色方案</label>
-                                <select id="colorSchemeSelect">
-                                    <option value="frost" data-i18n="凝霜蓝（默认）">凝霜蓝（默认）</option>
-                                    <option value="lava" data-i18n="熔岩流 Lava Flow">熔岩流 Lava Flow</option>
-                                    <option value="asagi" data-i18n="浅葱影 Asagi">浅葱影 Asagi</option>
-                                    <option value="cyber" data-i18n="极夜青 Cyber Teal">极夜青 Cyber Teal</option>
-                                    <option value="custom" data-i18n="自定义 CSS/JS 与配色">自定义 CSS/JS 与配色</option>
-                                </select>
-                                <label data-i18n="深浅模式">深浅模式</label>
-                                <select id="themeModeSelect"><option value="auto" data-i18n="跟随系统">跟随系统</option><option value="dark" data-i18n="深色">深色</option><option value="light" data-i18n="浅色">浅色</option></select>
-                                <label class="check-line"><input type="checkbox" id="autoThemeEnabled"> <span data-i18n="自动跟随系统深色/浅色模式">自动跟随系统深色/浅色模式</span></label>
-                                <p class="field-hint" data-i18n="开启后根据系统外观自动切换；关闭后使用上面的深色或浅色模式。">开启后根据系统外观自动切换；关闭后使用上面的深色或浅色模式。</p>
-                                <div class="custom-theme-panel force-hidden" id="customThemePanel">
-                                    <input id="customThemeMode" type="hidden" value="dark">
-                                    <div class="custom-color-grid">
-                                        <label><span data-i18n="大背景">大背景</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#101114" aria-label="选择大背景颜色" data-i18n-aria-label="选择大背景颜色"></button><input class="color-hex-input" data-custom-color="bgMain" value="#101114" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="卡片背景">卡片背景</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#1b1c20" aria-label="选择卡片背景颜色" data-i18n-aria-label="选择卡片背景颜色"></button><input class="color-hex-input" data-custom-color="bgCard" value="#1b1c20" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="主按钮">主按钮</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#0a84ff" aria-label="选择主按钮颜色" data-i18n-aria-label="选择主按钮颜色"></button><input class="color-hex-input" data-custom-color="primary" value="#0a84ff" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="按钮 Hover">按钮 Hover</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#2997ff" aria-label="选择按钮 Hover颜色" data-i18n-aria-label="选择按钮 Hover颜色"></button><input class="color-hex-input" data-custom-color="primaryHover" value="#2997ff" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="文字">文字</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#f4f4f6" aria-label="选择文字颜色" data-i18n-aria-label="选择文字颜色"></button><input class="color-hex-input" data-custom-color="text" value="#f4f4f6" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="次级文字">次级文字</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#9a9ca3" aria-label="选择次级文字颜色" data-i18n-aria-label="选择次级文字颜色"></button><input class="color-hex-input" data-custom-color="textSecondary" value="#9a9ca3" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="边框">边框</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#303237" aria-label="选择边框颜色" data-i18n-aria-label="选择边框颜色"></button><input class="color-hex-input" data-custom-color="border" value="#303237" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="危险色">危险色</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ff453a" aria-label="选择危险色颜色" data-i18n-aria-label="选择危险色颜色"></button><input class="color-hex-input" data-custom-color="danger" value="#ff453a" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="成功色">成功色</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#32d74b" aria-label="选择成功色颜色" data-i18n-aria-label="选择成功色颜色"></button><input class="color-hex-input" data-custom-color="success" value="#32d74b" maxlength="7" spellcheck="false" inputmode="text"></div></label>
-                                        <label><span data-i18n="警告色">警告色</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ffd60a" aria-label="选择警告色颜色" data-i18n-aria-label="选择警告色颜色"></button><input class="color-hex-input" data-custom-color="warning" value="#ffd60a" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                            <form id="appearanceForm" class="settings-form appearance-cards-form">
+                                <section class="security-card">
+                                    <h2 data-i18n="品牌与主题">品牌与主题</h2>
+                                    <label class="settings-switch-option" for="sessionPersistenceEnabled">
+                                        <span class="settings-switch-copy"><strong data-i18n="会话持久化">会话持久化</strong><small data-i18n="关闭页面后再次打开时，恢复之前的页面和会话。">关闭页面后再次打开时，恢复之前的页面和会话。</small></span>
+                                        <span class="connection-share-switch"><input type="checkbox" id="sessionPersistenceEnabled" checked><span aria-hidden="true"></span></span>
+                                    </label>
+                                    <div class="security-input-stack">
+                                        <div class="form-group"><label for="brandNameInput" data-i18n="左上角标题">左上角标题</label><input id="brandNameInput" maxlength="40" placeholder=" "></div>
                                     </div>
-                                    <label data-i18n="自定义 CSS">自定义 CSS</label>
-                                    <textarea id="customCssInput" rows="6" spellcheck="false" placeholder=":root { --accent: #0a84ff; }\n.connection-card { border-radius: 22px; }"></textarea>
-                                    <label data-i18n="自定义 JS">自定义 JS</label>
-                                    <textarea id="customJsInput" rows="5" spellcheck="false" placeholder="// 保存后在前端页面执行；请只填写可信代码" data-i18n-placeholder="// 保存后在前端页面执行；请只填写可信代码"></textarea>
-                                    <p class="field-hint" data-i18n="自定义 CSS/JS 只在选择“自定义”配色时生效；JS 会在登录页、后台和远程窗口前端执行，请只保存你信任的代码。">自定义 CSS/JS 只在选择“自定义”配色时生效；JS 会在登录页、后台和远程窗口前端执行，请只保存你信任的代码。</p>
-                                </div>
-                                <h3 data-i18n="SSH 终端自定义">SSH 终端自定义</h3>
-                                <label data-i18n="终端背景来源">终端背景来源</label>
-                                <select id="terminalBgSource"><option value="none" data-i18n="不使用自定义背景">不使用自定义背景</option><option value="upload" data-i18n="上传图片">上传图片</option><option value="url" data-i18n="图片 URL">图片 URL</option></select>
-                                <input id="terminalBgFile" type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/avif,image/svg+xml">
-                                <input id="terminalBgDataUrl" type="hidden">
-                                <input id="terminalBgUrl" type="url" placeholder="https://example.com/background.jpg">
-                                <div class="terminal-bg-preview" id="terminalBgPreview" data-i18n="未设置背景">未设置背景</div>
-                                <div class="form-row">
-                                    <div class="form-group"><label data-i18n="背景适配">背景适配</label><select id="terminalBgFit"><option value="cover" data-i18n="覆盖">覆盖</option><option value="contain" data-i18n="完整显示">完整显示</option><option value="auto" data-i18n="原始尺寸">原始尺寸</option></select></div>
-                                    <div class="form-group"><label><span data-i18n="背景强度">背景强度</span> <span id="terminalBgOpacityValue">35%</span></label><input id="terminalBgOpacity" class="edge-range terminal-bg-opacity-range" type="range" min="0" max="1" step="any" value="0.35"></div>
-                                    <div class="form-group"><label><span data-i18n="模糊强度">模糊强度</span> <span id="terminalBgBlurValue">0px</span></label><input id="terminalBgBlur" class="edge-range terminal-bg-opacity-range" type="range" min="0" max="20" step="any" value="0"></div>
-                                </div>
-                                <label class="check-line"><input type="checkbox" id="terminalFontColorEnabled"> <span data-i18n="启用自定义 SSH 终端字体颜色">启用自定义 SSH 终端字体颜色</span></label>
-                                <div class="form-row terminal-font-color-row">
-                                    <div class="form-group">
-                                        <label data-i18n="深色终端字体颜色">深色终端字体颜色</label>
-                                        <div class="zephyr-color-picker terminal-font-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#f4f4f6" aria-label="选择深色终端字体颜色" data-i18n-aria-label="选择深色终端字体颜色"></button><input id="terminalFontColor" class="color-hex-input" value="#f4f4f6" maxlength="7" spellcheck="false" inputmode="text" placeholder="#f4f4f6"></div>
+                                    <label data-i18n="左上角图标">左上角图标</label>
+                                    <div class="brand-upload-row">
+                                        <div class="brand-icon-preview" id="brandIconPreview" aria-label="当前图标" data-i18n-aria-label="当前图标">🌬️</div>
+                                        <input id="brandIconFile" type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml">
                                     </div>
-                                    <div class="form-group">
-                                        <label data-i18n="浅色终端字体颜色">浅色终端字体颜色</label>
-                                        <div class="zephyr-color-picker terminal-font-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#1d1d1f" aria-label="选择浅色终端字体颜色" data-i18n-aria-label="选择浅色终端字体颜色"></button><input id="terminalFontColorLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空自动取反色" data-i18n-placeholder="留空自动取反色"></div>
-                                        <p class="field-hint" data-i18n="留空时会自动使用深色终端字体的反色，例如白色 → 黑色。">留空时会自动使用深色终端字体的反色，例如白色 → 黑色。</p>
+                                    <p class="field-hint" data-i18n="图标支持上传常见图片格式，建议使用正方形 PNG/SVG；保存后会同步到页面标题、favicon 与登录页。">图标支持上传常见图片格式，建议使用正方形 PNG/SVG；保存后会同步到页面标题、favicon 与登录页。</p>
+                                    <label for="colorSchemeSelect" data-i18n="配色方案">配色方案</label>
+                                    <select id="colorSchemeSelect">
+                                        <option value="frost" data-i18n="凝霜蓝（默认）">凝霜蓝（默认）</option>
+                                        <option value="lava" data-i18n="熔岩流 Lava Flow">熔岩流 Lava Flow</option>
+                                        <option value="asagi" data-i18n="浅葱影 Asagi">浅葱影 Asagi</option>
+                                        <option value="cyber" data-i18n="极夜青 Cyber Teal">极夜青 Cyber Teal</option>
+                                        <option value="custom" data-i18n="自定义 CSS/JS 与配色">自定义 CSS/JS 与配色</option>
+                                    </select>
+                                    <label for="themeModeSelect" data-i18n="深浅模式">深浅模式</label>
+                                    <div class="theme-mode-dependent"><select id="themeModeSelect"><option value="auto" data-i18n="跟随系统">跟随系统</option><option value="dark" data-i18n="深色">深色</option><option value="light" data-i18n="浅色">浅色</option></select></div>
+                                    <label class="settings-switch-option" for="autoThemeEnabled">
+                                        <span class="settings-switch-copy"><strong data-i18n="自动跟随系统深色/浅色模式">自动跟随系统深色/浅色模式</strong><small data-i18n="开启后根据系统外观自动切换；关闭后使用上面的深色或浅色模式。">开启后根据系统外观自动切换；关闭后使用上面的深色或浅色模式。</small></span>
+                                        <span class="connection-share-switch"><input type="checkbox" id="autoThemeEnabled"><span aria-hidden="true"></span></span>
+                                    </label>
+                                    <div class="custom-theme-panel force-hidden" id="customThemePanel">
+                                        <input id="customThemeMode" type="hidden" value="dark">
+                                        <div class="custom-color-grid">
+                                            <label><span data-i18n="大背景">大背景</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#101114" aria-label="选择大背景颜色" data-i18n-aria-label="选择大背景颜色"></button><input class="color-hex-input" data-custom-color="bgMain" value="#101114" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="卡片背景">卡片背景</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#1b1c20" aria-label="选择卡片背景颜色" data-i18n-aria-label="选择卡片背景颜色"></button><input class="color-hex-input" data-custom-color="bgCard" value="#1b1c20" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="主按钮">主按钮</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#0a84ff" aria-label="选择主按钮颜色" data-i18n-aria-label="选择主按钮颜色"></button><input class="color-hex-input" data-custom-color="primary" value="#0a84ff" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="按钮 Hover">按钮 Hover</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#2997ff" aria-label="选择按钮 Hover颜色" data-i18n-aria-label="选择按钮 Hover颜色"></button><input class="color-hex-input" data-custom-color="primaryHover" value="#2997ff" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="文字">文字</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#f4f4f6" aria-label="选择文字颜色" data-i18n-aria-label="选择文字颜色"></button><input class="color-hex-input" data-custom-color="text" value="#f4f4f6" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="次级文字">次级文字</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#9a9ca3" aria-label="选择次级文字颜色" data-i18n-aria-label="选择次级文字颜色"></button><input class="color-hex-input" data-custom-color="textSecondary" value="#9a9ca3" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="边框">边框</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#303237" aria-label="选择边框颜色" data-i18n-aria-label="选择边框颜色"></button><input class="color-hex-input" data-custom-color="border" value="#303237" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="危险色">危险色</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ff453a" aria-label="选择危险色颜色" data-i18n-aria-label="选择危险色颜色"></button><input class="color-hex-input" data-custom-color="danger" value="#ff453a" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="成功色">成功色</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#32d74b" aria-label="选择成功色颜色" data-i18n-aria-label="选择成功色颜色"></button><input class="color-hex-input" data-custom-color="success" value="#32d74b" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                            <label><span data-i18n="警告色">警告色</span><div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ffd60a" aria-label="选择警告色颜色" data-i18n-aria-label="选择警告色颜色"></button><input class="color-hex-input" data-custom-color="warning" value="#ffd60a" maxlength="7" spellcheck="false" inputmode="text"></div></label>
+                                        </div>
+                                        <label data-i18n="自定义 CSS">自定义 CSS</label>
+                                        <textarea id="customCssInput" rows="6" spellcheck="false" placeholder=":root { --accent: #0a84ff; }\n.connection-card { border-radius: 22px; }"></textarea>
+                                        <label data-i18n="自定义 JS">自定义 JS</label>
+                                        <textarea id="customJsInput" rows="5" spellcheck="false" placeholder="// 保存后在前端页面执行；请只填写可信代码" data-i18n-placeholder="// 保存后在前端页面执行；请只填写可信代码"></textarea>
+                                        <p class="field-hint" data-i18n="自定义 CSS/JS 只在选择“自定义”配色时生效；JS 会在登录页、后台和远程窗口前端执行，请只保存你信任的代码。">自定义 CSS/JS 只在选择“自定义”配色时生效；JS 会在登录页、后台和远程窗口前端执行，请只保存你信任的代码。</p>
                                     </div>
-                                </div>
-                                <label class="check-line"><input type="checkbox" id="terminalSolidBgEnabled"> <span data-i18n="启用自定义终端背景色（所有配色模式生效）">启用自定义终端背景色（所有配色模式生效）</span></label>
-                                <div class="form-row terminal-solid-bg-row">
-                                    <div class="form-group">
-                                        <label data-i18n="深色终端背景色">深色终端背景色</label>
-                                        <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#0a0a0a" aria-label="选择深色终端背景色" data-i18n-aria-label="选择深色终端背景色"></button><input id="terminalSolidBgDark" class="color-hex-input" value="#0a0a0a" maxlength="7" spellcheck="false" inputmode="text" placeholder="#0a0a0a"></div>
+                                    <div class="form-actions">
+                                        <button class="btn btn-primary" type="submit" data-i18n="保存外观">保存外观</button>
+                                        <button class="btn" type="button" id="settingsThemeToggle" data-i18n="切换深色/浅色模式">切换深色/浅色模式</button>
+                                        <button class="btn danger" type="button" id="resetAppearanceBtn" data-i18n="重置名称和图标">重置名称和图标</button>
                                     </div>
-                                    <div class="form-group">
-                                        <label data-i18n="浅色终端背景色">浅色终端背景色</label>
-                                        <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#f5f5f7" aria-label="选择浅色终端背景色" data-i18n-aria-label="选择浅色终端背景色"></button><input id="terminalSolidBgLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空自动取反色" data-i18n-placeholder="留空自动取反色"></div>
+                                </section>
+                                <section class="security-card">
+                                    <h2 data-i18n="SSH 终端自定义">SSH 终端自定义</h2>
+                                    <label for="terminalBgSource" data-i18n="终端背景来源">终端背景来源</label>
+                                    <select id="terminalBgSource"><option value="none" data-i18n="不使用自定义背景">不使用自定义背景</option><option value="upload" data-i18n="上传图片">上传图片</option><option value="url" data-i18n="图片 URL">图片 URL</option></select>
+                                    <input id="terminalBgFile" type="file" accept="image/png,image/jpeg,image/gif,image/webp,image/avif,image/svg+xml">
+                                    <input id="terminalBgDataUrl" type="hidden">
+                                    <input id="terminalBgUrl" type="url" placeholder="https://example.com/background.jpg">
+                                    <div class="terminal-bg-preview" id="terminalBgPreview" data-i18n="未设置背景">未设置背景</div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label data-i18n="背景适配">背景适配</label><select id="terminalBgFit"><option value="cover" data-i18n="覆盖">覆盖</option><option value="contain" data-i18n="完整显示">完整显示</option><option value="auto" data-i18n="原始尺寸">原始尺寸</option></select></div>
+                                        <div class="form-group"><label><span data-i18n="背景强度">背景强度</span> <span id="terminalBgOpacityValue">35%</span></label><input id="terminalBgOpacity" class="edge-range terminal-bg-opacity-range" type="range" min="0" max="1" step="any" value="0.35"></div>
+                                        <div class="form-group"><label><span data-i18n="模糊强度">模糊强度</span> <span id="terminalBgBlurValue">0px</span></label><input id="terminalBgBlur" class="edge-range terminal-bg-opacity-range" type="range" min="0" max="20" step="any" value="0"></div>
                                     </div>
-                                </div>
-                                <label class="check-line"><input type="checkbox" id="terminalSelectionEnabled"> <span data-i18n="启用自定义选中色（选中背景 + 选中文字，所有配色模式生效）">启用自定义选中色（选中背景 + 选中文字，所有配色模式生效）</span></label>
-                                <div class="form-row terminal-selection-row">
-                                    <div class="form-group">
-                                        <label data-i18n="深色 · 选中背景">深色 · 选中背景</label>
-                                        <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#0a84ff" aria-label="选择深色选中背景" data-i18n-aria-label="选择深色选中背景"></button><input id="terminalSelectionBgDark" class="color-hex-input" value="#0a84ff" maxlength="7" spellcheck="false" inputmode="text" placeholder="#0a84ff"></div>
+                                    <label class="settings-switch-option" for="terminalFontColorEnabled">
+                                        <span class="settings-switch-copy"><strong data-i18n="启用自定义 SSH 终端字体颜色">启用自定义 SSH 终端字体颜色</strong></span>
+                                        <span class="connection-share-switch"><input type="checkbox" id="terminalFontColorEnabled"><span aria-hidden="true"></span></span>
+                                    </label>
+                                    <div class="switch-dependent" data-master="terminalFontColorEnabled">
+                                        <div class="form-row terminal-font-color-row">
+                                            <div class="form-group">
+                                                <label data-i18n="深色终端字体颜色">深色终端字体颜色</label>
+                                                <div class="zephyr-color-picker terminal-font-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#f4f4f6" aria-label="选择深色终端字体颜色" data-i18n-aria-label="选择深色终端字体颜色"></button><input id="terminalFontColor" class="color-hex-input" value="#f4f4f6" maxlength="7" spellcheck="false" inputmode="text" placeholder="#f4f4f6"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label data-i18n="浅色终端字体颜色">浅色终端字体颜色</label>
+                                                <div class="zephyr-color-picker terminal-font-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#1d1d1f" aria-label="选择浅色终端字体颜色" data-i18n-aria-label="选择浅色终端字体颜色"></button><input id="terminalFontColorLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空自动取反色" data-i18n-placeholder="留空自动取反色"></div>
+                                                <p class="field-hint" data-i18n="留空时会自动使用深色终端字体的反色，例如白色 → 黑色。">留空时会自动使用深色终端字体的反色，例如白色 → 黑色。</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label data-i18n="深色 · 选中文字">深色 · 选中文字</label>
-                                        <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ffffff" aria-label="选择深色选中文字色" data-i18n-aria-label="选择深色选中文字色"></button><input id="terminalSelectionFgDark" class="color-hex-input" value="#ffffff" maxlength="7" spellcheck="false" inputmode="text" placeholder="#ffffff"></div>
+                                    <label class="settings-switch-option" for="terminalSolidBgEnabled">
+                                        <span class="settings-switch-copy"><strong data-i18n="启用自定义终端背景色">启用自定义终端背景色</strong><small data-i18n="所有配色模式生效">所有配色模式生效</small></span>
+                                        <span class="connection-share-switch"><input type="checkbox" id="terminalSolidBgEnabled"><span aria-hidden="true"></span></span>
+                                    </label>
+                                    <div class="switch-dependent" data-master="terminalSolidBgEnabled">
+                                        <div class="form-row terminal-solid-bg-row">
+                                            <div class="form-group">
+                                                <label data-i18n="深色终端背景色">深色终端背景色</label>
+                                                <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#0a0a0a" aria-label="选择深色终端背景色" data-i18n-aria-label="选择深色终端背景色"></button><input id="terminalSolidBgDark" class="color-hex-input" value="#0a0a0a" maxlength="7" spellcheck="false" inputmode="text" placeholder="#0a0a0a"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label data-i18n="浅色终端背景色">浅色终端背景色</label>
+                                                <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#f5f5f7" aria-label="选择浅色终端背景色" data-i18n-aria-label="选择浅色终端背景色"></button><input id="terminalSolidBgLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空自动取反色" data-i18n-placeholder="留空自动取反色"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row terminal-selection-row">
-                                    <div class="form-group">
-                                        <label data-i18n="浅色 · 选中背景">浅色 · 选中背景</label>
-                                        <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#007aff" aria-label="选择浅色选中背景" data-i18n-aria-label="选择浅色选中背景"></button><input id="terminalSelectionBgLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空沿用深色" data-i18n-placeholder="留空沿用深色"></div>
+                                    <label class="settings-switch-option" for="terminalSelectionEnabled">
+                                        <span class="settings-switch-copy"><strong data-i18n="启用自定义选中色">启用自定义选中色</strong><small data-i18n="选中背景 + 选中文字，所有配色模式生效">选中背景 + 选中文字，所有配色模式生效</small></span>
+                                        <span class="connection-share-switch"><input type="checkbox" id="terminalSelectionEnabled"><span aria-hidden="true"></span></span>
+                                    </label>
+                                    <div class="switch-dependent" data-master="terminalSelectionEnabled">
+                                        <div class="form-row terminal-selection-row">
+                                            <div class="form-group">
+                                                <label data-i18n="深色 · 选中背景">深色 · 选中背景</label>
+                                                <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#0a84ff" aria-label="选择深色选中背景" data-i18n-aria-label="选择深色选中背景"></button><input id="terminalSelectionBgDark" class="color-hex-input" value="#0a84ff" maxlength="7" spellcheck="false" inputmode="text" placeholder="#0a84ff"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label data-i18n="深色 · 选中文字">深色 · 选中文字</label>
+                                                <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ffffff" aria-label="选择深色选中文字色" data-i18n-aria-label="选择深色选中文字色"></button><input id="terminalSelectionFgDark" class="color-hex-input" value="#ffffff" maxlength="7" spellcheck="false" inputmode="text" placeholder="#ffffff"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row terminal-selection-row">
+                                            <div class="form-group">
+                                                <label data-i18n="浅色 · 选中背景">浅色 · 选中背景</label>
+                                                <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#007aff" aria-label="选择浅色选中背景" data-i18n-aria-label="选择浅色选中背景"></button><input id="terminalSelectionBgLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空沿用深色" data-i18n-placeholder="留空沿用深色"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label data-i18n="浅色 · 选中文字">浅色 · 选中文字</label>
+                                                <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ffffff" aria-label="选择浅色选中文字色" data-i18n-aria-label="选择浅色选中文字色"></button><input id="terminalSelectionFgLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空沿用深色" data-i18n-placeholder="留空沿用深色"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label data-i18n="浅色 · 选中文字">浅色 · 选中文字</label>
-                                        <div class="zephyr-color-picker" data-color-picker><button type="button" class="color-swatch" data-color-swatch style="--picker-color:#ffffff" aria-label="选择浅色选中文字色" data-i18n-aria-label="选择浅色选中文字色"></button><input id="terminalSelectionFgLight" class="color-hex-input" value="" maxlength="7" spellcheck="false" inputmode="text" placeholder="留空沿用深色" data-i18n-placeholder="留空沿用深色"></div>
-                                    </div>
-                                </div>
-                                <p class="field-hint" data-i18n="上传图片最高 12MB；URL 适合使用 CDN/对象存储图片。背景色/选中色与配色方案（凝霜/熔岩/自定义等）独立，在任意模式下均可覆盖终端默认。">上传图片最高 12MB；URL 适合使用 CDN/对象存储图片。背景色/选中色与配色方案（凝霜/熔岩/自定义等）独立，在任意模式下均可覆盖终端默认。</p>
-                                <div class="form-row">
-                                </div>
-                                <div class="form-actions">
-                                    <button class="btn btn-primary" type="submit" data-i18n="保存外观">保存外观</button>
-                                    <button class="btn" type="button" id="settingsThemeToggle" data-i18n="切换深色/浅色模式">切换深色/浅色模式</button>
-                                    <button class="btn danger" type="button" id="resetAppearanceBtn" data-i18n="重置名称和图标">重置名称和图标</button>
-                                </div>
+                                    <p class="field-hint" data-i18n="上传图片最高 12MB；URL 适合使用 CDN/对象存储图片。背景色/选中色与配色方案（凝霜/熔岩/自定义等）独立，在任意模式下均可覆盖终端默认。">上传图片最高 12MB；URL 适合使用 CDN/对象存储图片。背景色/选中色与配色方案（凝霜/熔岩/自定义等）独立，在任意模式下均可覆盖终端默认。</p>
+                                </section>
                             </form>
-                            <h2 data-i18n="终端工作台">终端工作台</h2>
-                            <form id="terminalLayoutForm" class="settings-form">
-                                <label data-i18n="终端页面最多显示窗口数">终端页面最多显示窗口数</label>
-                                <select id="terminalMaxWindows">
-                                    <option value="1" data-i18n="单窗">单窗</option>
-                                    <option value="2" data-i18n="双窗">双窗</option>
-                                    <option value="3" data-i18n="三窗">三窗</option>
-                                </select>
-                                <label data-i18n="最小化窗口保持连接数">最小化窗口保持连接数</label>
-                                <input id="terminalMinimizedKeepAlive" type="number" min="-1" step="1" value="0" placeholder="0">
-                                <p class="field-hint" data-i18n="默认 0：最小化后不保留 SSH 连接；-1：不限制；正数：保留最近使用的 N 个最小化窗口连接。">默认 0：最小化后不保留 SSH 连接；-1：不限制；正数：保留最近使用的 N 个最小化窗口连接。</p>
-                                <label data-i18n="顶部终端栏排序">顶部终端栏排序</label>
-                                <select id="terminalSmartbarOrder">
-                                    <option value="old-first" data-i18n="从最早到最新">从最早到最新</option>
-                                    <option value="new-first" data-i18n="从最新到最早">从最新到最早</option>
-                                </select>
-                                <label data-i18n="文件菜单快捷键提示">文件菜单快捷键提示</label>
-                                <select id="terminalShortcutPlatform">
-                                    <option value="auto" data-i18n="自动识别">自动识别</option>
-                                    <option value="windows">Windows / Linux</option>
-                                    <option value="mac">macOS</option>
-                                </select>
-                                <label class="check-line"><input type="checkbox" id="terminalAllowLigatures"> <span data-i18n="允许终端字体连字（仅同样式 run 内）">允许终端字体连字（仅同样式 run 内）</span></label>
-                                <p class="field-hint" data-i18n="默认关闭，避免破坏等宽网格；开启后 fi/fl/==&gt; 等可连写，但跨颜色/样式片段仍不会连字。">默认关闭，避免破坏等宽网格；开启后 fi/fl/==&gt; 等可连写，但跨颜色/样式片段仍不会连字。</p>
-                                <button class="btn btn-primary" type="submit" data-i18n="保存终端布局">保存终端布局</button>
+                            <form id="terminalLayoutForm" class="settings-form appearance-cards-form">
+                                <section class="security-card">
+                                    <h2 data-i18n="终端工作台">终端工作台</h2>
+                                    <label for="terminalMaxWindows" data-i18n="终端页面最多显示窗口数">终端页面最多显示窗口数</label>
+                                    <select id="terminalMaxWindows">
+                                        <option value="1" data-i18n="单窗">单窗</option>
+                                        <option value="2" data-i18n="双窗">双窗</option>
+                                        <option value="3" data-i18n="三窗">三窗</option>
+                                    </select>
+                                    <label for="terminalMinimizedKeepAlive" data-i18n="最小化窗口保持连接数">最小化窗口保持连接数</label>
+                                    <input id="terminalMinimizedKeepAlive" type="number" min="-1" step="1" value="0" placeholder="0">
+                                    <p class="field-hint" data-i18n="默认 0：最小化后不保留 SSH 连接；-1：不限制；正数：保留最近使用的 N 个最小化窗口连接。">默认 0：最小化后不保留 SSH 连接；-1：不限制；正数：保留最近使用的 N 个最小化窗口连接。</p>
+                                    <label for="terminalSmartbarOrder" data-i18n="顶部终端栏排序">顶部终端栏排序</label>
+                                    <select id="terminalSmartbarOrder">
+                                        <option value="old-first" data-i18n="从最早到最新">从最早到最新</option>
+                                        <option value="new-first" data-i18n="从最新到最早">从最新到最早</option>
+                                    </select>
+                                    <label for="terminalShortcutPlatform" data-i18n="文件菜单快捷键提示">文件菜单快捷键提示</label>
+                                    <select id="terminalShortcutPlatform">
+                                        <option value="auto" data-i18n="自动识别">自动识别</option>
+                                        <option value="windows">Windows / Linux</option>
+                                        <option value="mac">macOS</option>
+                                    </select>
+                                    <label class="settings-switch-option" for="terminalAllowLigatures">
+                                        <span class="settings-switch-copy"><strong data-i18n="允许终端字体连字">允许终端字体连字</strong><small data-i18n="默认关闭，避免破坏等宽网格；开启后 fi/fl/==&gt; 等可连写，但跨颜色/样式片段仍不会连字。">默认关闭，避免破坏等宽网格；开启后 fi/fl/==&gt; 等可连写，但跨颜色/样式片段仍不会连字。</small></span>
+                                        <span class="connection-share-switch"><input type="checkbox" id="terminalAllowLigatures"><span aria-hidden="true"></span></span>
+                                    </label>
+                                    <button class="btn btn-primary" type="submit" data-i18n="保存终端布局">保存终端布局</button>
+                                </section>
                             </form>
                         </div>
                         <div class="settings-panel" id="settings-beian">
