@@ -1076,7 +1076,7 @@ function applyTheme(theme, { persist = false } = {}) {
     SMARTBAR_TEXT_IMAGE_CACHE.clear();
     if (terminalTabs.length) renderTerminalSmartbar();
     if (persist || getAppearance().autoThemeEnabled === false) localStorage.setItem('zephyr-theme', theme);
-    $('#appThemeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+    $('#appThemeToggle').classList.toggle('theme-dark', theme === 'dark');
     syncAppearanceSchemeControls();
     console.debug('[appearance-client]', 'theme transition applied', { previousTheme, theme, changed });
     broadcastThemeToTerminals(theme);
@@ -3858,7 +3858,7 @@ function prepareConnectionModalForm(conn = null, options = {}) {
     if ($('#connEncoding')) $('#connEncoding').value = conn?.encoding || 'utf-8';
     renderSshKeyOptions(conn?.sshKeyId || '');
     $('#connTags').value = (conn?.tags || []).join(', '); setRouteMode(conn?.connectionMode || 'direct', conn?.connectionMode === 'jump' ? (conn?.jumpHostIds || (conn?.jumpHostId ? [conn.jumpHostId] : [])) : (conn?.proxyId || ''));
-    $('#connPassword').type = 'password'; $('#toggleConnPassword').textContent = '👁️';
+    $('#connPassword').type = 'password'; $('#toggleConnPassword')?.classList.remove('is-visible');
     // Transient credentials must never be written as a readable DOM value.
     if (connectionModalMode === 'transient' && conn?.hasTransientCredential) {
         $('#connPassword').value = '';
@@ -8671,7 +8671,7 @@ function resetAiEnvForm() {
     $('#aiEnvDescription').value = '';
     $('#aiEnvValue').value = '';
     $('#aiEnvValue').type = 'password';
-    $('#toggleAiEnvValue').textContent = '👁️';
+    $('#toggleAiEnvValue')?.classList.remove('is-visible');
     $('#aiEnvEnabled').checked = true;
     $('#aiEnvVisibleToAi').checked = false;
     $('#aiEnvValueVisibleToAi').checked = false;
@@ -11740,7 +11740,7 @@ function setupAiAssistant() {
     });
     $('#aiEnvForm')?.addEventListener('submit', saveAiEnv);
     $('#aiEnvResetBtn')?.addEventListener('click', resetAiEnvForm);
-    $('#toggleAiEnvValue')?.addEventListener('click', () => { const el = $('#aiEnvValue'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleAiEnvValue').textContent = el.type === 'password' ? '👁️' : '🙈'; });
+    $('#toggleAiEnvValue')?.addEventListener('click', () => { const el = $('#aiEnvValue'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleAiEnvValue').classList.toggle('is-visible', el.type === 'text'); });
     $('#aiEnvList')?.addEventListener('click', (e) => { const edit = e.target.dataset.aiEditEnv, del = e.target.dataset.aiDeleteEnv; const ai = normalizeAiSettings(settings.ai || {}); if (edit) { const item = ai.envVars.find((x) => x.id === edit); if (!item) return; $('#aiEnvId').value = item.id; $('#aiEnvName').value = item.name || ''; $('#aiEnvDescription').value = item.description || ''; $('#aiEnvValue').value = item.hasValue || item.value ? '******' : ''; $('#aiEnvEnabled').checked = item.enabled !== false; $('#aiEnvVisibleToAi').checked = item.visibleToAi === true; $('#aiEnvValueVisibleToAi').checked = item.valueVisibleToAi === true; } if (del) deleteAiEnv(del); });
     $('#aiMemoryForm')?.addEventListener('submit', saveAiMemory);
     $('#aiMemoryResetBtn')?.addEventListener('click', resetAiMemoryForm);
@@ -12136,7 +12136,7 @@ async function revealCaptchaSecret() {
     const data = await api('/api/settings/captcha/open', { method: 'POST', body: JSON.stringify({ secret }) });
     $('#captchaSecretKey').value = data.secretKey || '';
     $('#captchaSecretKey').type = 'text';
-    $('#toggleCaptchaSecret').textContent = '🙈';
+    $('#toggleCaptchaSecret').classList.add('is-visible');
     console.debug('[captcha-client]', 'captcha secret loaded', { provider: data.provider, hasSecretKey: !!data.hasSecretKey });
     toast(data.hasSecretKey ? '已载入保存的 CAPTCHA 密钥' : '当前未保存 CAPTCHA 密钥');
 }
@@ -12145,7 +12145,7 @@ async function saveMail(e) {
     try {
         settings = await savePlatformSettings('mail', { mail: { enabled: $('#mailEnabled').checked, host: $('#mailHost').value.trim(), port: Number($('#mailPort').value) || 465, secure: $('#mailSecure').checked, user: $('#mailUser').value.trim(), pass: $('#mailPass').value, from: $('#mailFrom').value.trim(), adminEmail: $('#mailAdminEmail').value.trim(), notifyLoginSuccess: $('#notifyLoginSuccess').checked, notifyLoginFailure: $('#notifyLoginFailure').checked, notifyLoginToUser: $('#notifyLoginToUser').checked, geoLookupEnabled: $('#geoLookupEnabled').checked } });
         $('#mailPass').type = 'password';
-        $('#toggleMailPassword').textContent = '👁️';
+        $('#toggleMailPassword').classList.remove('is-visible');
         toast(t('邮件设置已保存'));
     } catch (err) {
         toast(err.message || '邮件设置保存失败');
@@ -12156,7 +12156,7 @@ async function revealMailPass() {
     const data = await api('/api/settings/mail/open', { method: 'POST', body: JSON.stringify({ secret }) });
     $('#mailPass').value = data.pass || '';
     $('#mailPass').type = 'text';
-    $('#toggleMailPassword').textContent = '🙈';
+    $('#toggleMailPassword').classList.add('is-visible');
     console.debug('[secret-open]', 'mail password loaded', { hasPass: !!data.hasPass });
     toast(data.hasPass ? '已载入保存的 SMTP 密码' : '当前未保存 SMTP 密码');
 }
@@ -13065,7 +13065,7 @@ function bindEvents() {
         if (!btn) return;
         handleAdminAction(btn.dataset.adminAction, btn.dataset.userId);
     });
-    $('#addConnectionBtn').addEventListener('click', (e) => openModal(null, e.currentTarget, { mode: 'create', source: 'dashboard' })); $('#closeModalBtn').addEventListener('click', closeModal); $('#cancelModalBtn').addEventListener('click', closeModal); $('#toggleConnPassword').addEventListener('click', () => { const el = $('#connPassword'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleConnPassword').textContent = el.type === 'password' ? '👁️' : '🙈'; }); $('#revealConnSecrets').addEventListener('click', () => revealConnectionSecrets().catch((err) => toast(err.message))); $$('.route-type-tab').forEach((btn) => btn.addEventListener('click', () => setRouteMode($('#connMode').value === btn.dataset.routeMode ? 'direct' : btn.dataset.routeMode))); $('#addJumpRouteBtn').addEventListener('click', addJumpRouteRow); $('#jumpRouteList').addEventListener('click', (e) => { if (!e.target.closest?.('[data-remove-jump-route]')) return; const ids = $$('#jumpRouteList [data-jump-route-select]').filter((el) => !el.closest('[data-jump-route-row]').contains(e.target)).map((el) => el.value).filter(Boolean); renderJumpRouteRows(ids); }); $('#testConnectionBtn').addEventListener('click', testConnection); $('#connectTransientBtn')?.addEventListener('click', () => connectTransient().catch((err) => toast(err.message)));
+    $('#addConnectionBtn').addEventListener('click', (e) => openModal(null, e.currentTarget, { mode: 'create', source: 'dashboard' })); $('#closeModalBtn').addEventListener('click', closeModal); $('#cancelModalBtn').addEventListener('click', closeModal); $('#toggleConnPassword').addEventListener('click', () => { const el = $('#connPassword'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleConnPassword').classList.toggle('is-visible', el.type === 'text'); }); $('#revealConnSecrets').addEventListener('click', () => revealConnectionSecrets().catch((err) => toast(err.message))); $$('.route-type-tab').forEach((btn) => btn.addEventListener('click', () => setRouteMode($('#connMode').value === btn.dataset.routeMode ? 'direct' : btn.dataset.routeMode))); $('#addJumpRouteBtn').addEventListener('click', addJumpRouteRow); $('#jumpRouteList').addEventListener('click', (e) => { if (!e.target.closest?.('[data-remove-jump-route]')) return; const ids = $$('#jumpRouteList [data-jump-route-select]').filter((el) => !el.closest('[data-jump-route-row]').contains(e.target)).map((el) => el.value).filter(Boolean); renderJumpRouteRows(ids); }); $('#testConnectionBtn').addEventListener('click', testConnection); $('#connectTransientBtn')?.addEventListener('click', () => connectTransient().catch((err) => toast(err.message)));
     $('#connEphemeral')?.addEventListener('change', applyEphemeralToggleFromUi);
     $('#connProtocol').addEventListener('change', () => updateProtocolFields({ preservePort: false }));
     $('#rdpTouchMode')?.addEventListener('change', updateRdpTouchSettingsUi);
@@ -13598,9 +13598,9 @@ $('#sshKeyModalScrim')?.addEventListener('click', () => { if ($('#sshKeyModal')?
     $('#addPasskeyBtn')?.addEventListener('click', () => registerPasskey().catch((err) => toast(err.message)));
     $('#passkeyList')?.addEventListener('click', async (e) => { const id = e.target.dataset.delPasskey; if (id && confirm(t('删除该 Passkey？'))) { await api(`/api/passkeys/${id}`, { method: 'DELETE' }); await loadSecurityStatus(); } });
     $('#ipBanList')?.addEventListener('click', async (e) => { const ip = e.target.dataset.unban; if (ip) { await api(`/api/security/ip-bans/${encodeURIComponent(ip)}`, { method: 'DELETE' }); await loadSecurityLists(); toast(t('已解除封禁')); } });
-    $('#toggleCaptchaSecret')?.addEventListener('click', () => { const el = $('#captchaSecretKey'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleCaptchaSecret').textContent = el.type === 'password' ? '👁️' : '🙈'; });
+    $('#toggleCaptchaSecret')?.addEventListener('click', () => { const el = $('#captchaSecretKey'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleCaptchaSecret').classList.toggle('is-visible', el.type === 'text'); });
     $('#revealCaptchaSecret')?.addEventListener('click', () => revealCaptchaSecret().catch((err) => toast(err.message || '读取 CAPTCHA 密钥失败')));
-    $('#toggleMailPassword').addEventListener('click', () => { const el = $('#mailPass'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleMailPassword').textContent = el.type === 'password' ? '👁️' : '🙈'; });
+    $('#toggleMailPassword').addEventListener('click', () => { const el = $('#mailPass'); el.type = el.type === 'password' ? 'text' : 'password'; $('#toggleMailPassword').classList.toggle('is-visible', el.type === 'text'); });
     $('#revealMailPass').addEventListener('click', () => revealMailPass().catch((err) => toast(err.message || '读取 SMTP 密码失败')));
     $('#testMailBtn').addEventListener('click', () => testMail());
     $('#exportDataBtn').addEventListener('click', () => { location.href = '/api/data/export'; });

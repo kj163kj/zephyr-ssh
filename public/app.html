@@ -27,7 +27,7 @@
             <div class="nav-actions">
                 <button class="btn-sm ai-floating-btn force-hidden" id="aiFloatingBtn" title="打开 AI 助理" data-i18n-title="打开 AI 助理">AI</button>
                 <!-- Locale selection lives in Settings → Language. -->
-                <button class="btn-sm" id="appThemeToggle" title="切换深浅色" data-i18n-title="切换深浅色">🌓</button>
+                <button class="btn-sm theme-toggle" id="appThemeToggle" title="切换深浅色" data-i18n-title="切换深浅色"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
                 <button class="btn-sm danger" id="logoutBtn" data-i18n="登出">登出</button>
             </div>
         </header>
@@ -407,7 +407,7 @@
                                          <h2 data-i18n="IP 白名单与防爆破">IP 白名单与防爆破</h2>
                                          <form id="securityPolicyForm" class="settings-form">
                                              <label class="settings-switch-option" for="ipWhitelistEnabled">
-                                                 <span class="settings-switch-copy"><strong data-i18n="启用 IP 白名单">启用 IP 白名单</strong><small data-i18n="仅名单内 IP 可登录本站">仅名单内 IP 可登录本站</small></span>
+                                                 <span class="settings-switch-copy"><strong data-i18n="启用 IP 白名单">启用 IP 白名单</strong></span>
                                                  <span class="connection-share-switch"><input type="checkbox" id="ipWhitelistEnabled"><span aria-hidden="true"></span></span>
                                              </label>
                                              <div class="switch-dependent" data-needs="ip-whitelist">
@@ -420,7 +420,7 @@
                                                  <p class="field-hint" id="ipWhitelistHint" data-i18n="每行一个 IP 或 CIDR，例如 192.168.1.0/24">每行一个 IP 或 CIDR，例如 192.168.1.0/24</p>
                                              </div>
                                              <label class="settings-switch-option" for="bruteForceEnabled">
-                                                 <span class="settings-switch-copy"><strong data-i18n="启用防爆破封禁">启用防爆破封禁</strong><small data-i18n="连续失败自动封禁来源 IP">连续失败自动封禁来源 IP</small></span>
+                                                 <span class="settings-switch-copy"><strong data-i18n="启用防爆破封禁">启用防爆破封禁</strong></span>
                                                  <span class="connection-share-switch"><input type="checkbox" id="bruteForceEnabled"><span aria-hidden="true"></span></span>
                                              </label>
                                              <div class="switch-dependent" data-needs="brute-force">
@@ -437,7 +437,7 @@
                                          <h2>CAPTCHA</h2>
                                          <form id="captchaForm" class="settings-form">
                                              <label class="settings-switch-option" for="captchaEnabled">
-                                                 <span class="settings-switch-copy"><strong data-i18n="启用 CAPTCHA">启用 CAPTCHA</strong><small data-i18n="登录时要求人机验证">登录时要求人机验证</small></span>
+                                                 <span class="settings-switch-copy"><strong data-i18n="启用 CAPTCHA">启用 CAPTCHA</strong></span>
                                                  <span class="connection-share-switch"><input type="checkbox" id="captchaEnabled"><span aria-hidden="true"></span></span>
                                              </label>
                                              <div class="switch-dependent" data-needs="captcha">
@@ -445,7 +445,7 @@
                                                  <select id="captchaProvider"><option value="turnstile">Cloudflare Turnstile</option><option value="hcaptcha">hCaptcha</option><option value="google">Google reCAPTCHA v2</option><option value="tencent" data-i18n="腾讯云验证码">腾讯云验证码</option><option value="aliyun" data-i18n="阿里云验证码 2.0">阿里云验证码 2.0</option></select>
                                                  <div class="security-input-stack">
                                                      <div class="form-group"><label for="captchaSiteKey" data-i18n="Site Key / AppId / CaptchaId">Site Key / AppId / CaptchaId</label><input id="captchaSiteKey" placeholder=" "></div>
-                                                     <div class="form-group password-field"><label for="captchaSecretKey" data-i18n="Secret Key / AppSecretKey">Secret Key / AppSecretKey</label><input id="captchaSecretKey" type="password" placeholder=" "><button type="button" id="toggleCaptchaSecret" title="显示/隐藏 CAPTCHA 密钥" data-i18n-title="显示/隐藏 CAPTCHA 密钥">👁️</button></div>
+                                                     <div class="form-group password-field"><label for="captchaSecretKey" data-i18n="Secret Key / AppSecretKey">Secret Key / AppSecretKey</label><input id="captchaSecretKey" type="password" placeholder=" "><button type="button" id="toggleCaptchaSecret" class="pw-toggle" title="显示/隐藏 CAPTCHA 密钥" data-i18n-title="显示/隐藏 CAPTCHA 密钥"><svg class="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div>
                                                  </div>
                                                  <button type="button" class="link-btn" id="revealCaptchaSecret" data-i18n="查看已保存 CAPTCHA 密钥">查看已保存 CAPTCHA 密钥</button>
                                                  <p class="field-hint" data-i18n="默认隐藏已保存 CAPTCHA 密钥；留空或保持星号不会覆盖已保存密钥。查看时如已开启 TOTP 需输入动态验证码，否则输入当前登录密码。">默认隐藏已保存 CAPTCHA 密钥；留空或保持星号不会覆盖已保存密钥。查看时如已开启 TOTP 需输入动态验证码，否则输入当前登录密码。</p>
@@ -763,7 +763,7 @@
                                 <input type="hidden" id="aiEnvId">
                                 <input id="aiEnvName" placeholder="变量名，例如 OPENAI_ADMIN_TOKEN" data-i18n-placeholder="变量名，例如 OPENAI_ADMIN_TOKEN">
                                 <input id="aiEnvDescription" placeholder="说明，例如：调用内部 API 的 Bearer Token" data-i18n-placeholder="说明，例如：调用内部 API 的 Bearer Token">
-                                <div class="form-group password-field"><input id="aiEnvValue" type="password" placeholder="变量值；留 ****** 表示不修改" data-i18n-placeholder="变量值；留 ****** 表示不修改"><button type="button" id="toggleAiEnvValue" title="显示/隐藏变量值" data-i18n-title="显示/隐藏变量值">👁️</button></div>
+                                <div class="form-group password-field"><input id="aiEnvValue" type="password" placeholder="变量值；留 ****** 表示不修改" data-i18n-placeholder="变量值；留 ****** 表示不修改"><button type="button" id="toggleAiEnvValue" class="pw-toggle" title="显示/隐藏变量值" data-i18n-title="显示/隐藏变量值"><svg class="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div>
                                 <label class="check-line"><input type="checkbox" id="aiEnvEnabled" checked> <span data-i18n="启用变量">启用变量</span></label><label class="check-line"><input type="checkbox" id="aiEnvVisibleToAi"> <span data-i18n="允许 AI 看到变量名/说明">允许 AI 看到变量名/说明</span></label><label class="check-line"><input type="checkbox" id="aiEnvValueVisibleToAi"> <span data-i18n="允许 AI 直接看到变量值（仅用于非敏感配置）">允许 AI 直接看到变量值（仅用于非敏感配置）</span></label>
                                 <div class="form-actions"><button class="btn btn-primary" type="submit" data-i18n="保存环境变量">保存环境变量</button><button class="btn" type="button" id="aiEnvResetBtn" data-i18n="清空">清空</button></div>
                                 <p class="field-hint" data-i18n="默认完全不向 AI 暴露变量；可单独允许 AI 看到变量名/说明，或仅对非敏感配置允许直接看到值。未直接暴露的值仍需 get_env_var + 敏感确认。">默认完全不向 AI 暴露变量；可单独允许 AI 看到变量名/说明，或仅对非敏感配置允许直接看到值。未直接暴露的值仍需 get_env_var + 敏感确认。</p>
@@ -888,7 +888,7 @@
                                 <div class="security-card-row">
                                     <section class="data-settings-section security-card" aria-labelledby="dataExportTitle">
                                         <div class="about-head">
-                                            <div class="about-icon" aria-hidden="true">📤</div>
+                                            <div class="about-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
                                             <div class="about-title"><h2 id="dataExportTitle" data-i18n="数据导出">数据导出</h2></div>
                                         </div>
                                         <p class="muted" data-i18n="导出文件使用 data/.env 中 ENCRYPTION_KEY 加密；敏感字段在数据库中使用 ML-KEM-768 + AES-256-GCM 混合加密保存。">导出文件使用 data/.env 中 ENCRYPTION_KEY 加密；敏感字段在数据库中使用 ML-KEM-768 + AES-256-GCM 混合加密保存。</p>
@@ -897,7 +897,7 @@
                                     </section>
                                     <section class="data-settings-section security-card" aria-labelledby="dataImportTitle">
                                         <div class="about-head">
-                                            <div class="about-icon" aria-hidden="true">📥</div>
+                                            <div class="about-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
                                             <div class="about-title"><h2 id="dataImportTitle" data-i18n="导入备份">导入备份</h2></div>
                                         </div>
                                         <form id="importDataForm" class="settings-form data-import-form" aria-busy="false" aria-describedby="importDataStatus">
@@ -919,7 +919,7 @@
                                     <div class="webdav-heading">
                                         <div class="webdav-heading-copy">
                                             <div class="about-head">
-                                                <div class="about-icon" aria-hidden="true">☁️</div>
+                                                <div class="about-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
                                                 <div class="about-title"><h2 id="webDavSettingsTitle">WebDAV</h2></div>
                                             </div>
                                             <p class="muted" data-i18n="将当前账号的数据加密备份到独立的 WebDAV 目录。仅支持 HTTPS。">将当前账号的数据加密备份到独立的 WebDAV 目录。仅支持 HTTPS。</p>
@@ -929,7 +929,7 @@
 
                                     <form id="webDavSettingsForm" class="settings-form webdav-settings-form" aria-describedby="webDavPasswordState webDavStatusText">
                                         <label class="settings-switch-option" for="webDavEnabled">
-                                            <span class="settings-switch-copy"><strong data-i18n="启用 WebDAV 备份">启用 WebDAV 备份</strong><small data-i18n="启用后可手动验证连接并立即创建账号级加密备份。">启用后可手动验证连接并立即创建账号级加密备份。</small></span>
+                                            <span class="settings-switch-copy"><strong data-i18n="启用 WebDAV 备份">启用 WebDAV 备份</strong></span>
                                             <span class="connection-share-switch"><input type="checkbox" id="webDavEnabled" data-webdav-lock><span aria-hidden="true"></span></span>
                                         </label>
 
@@ -985,7 +985,7 @@
                                     <h2 data-i18n="SMTP 服务器">SMTP 服务器</h2>
                                     <form id="mailForm" class="settings-form">
                                         <label class="settings-switch-option" for="mailEnabled">
-                                            <span class="settings-switch-copy"><strong data-i18n="启用邮件通知">启用邮件通知</strong><small data-i18n="通过 SMTP 发送登录提醒与系统邮件">通过 SMTP 发送登录提醒与系统邮件</small></span>
+                                            <span class="settings-switch-copy"><strong data-i18n="启用邮件通知">启用邮件通知</strong></span>
                                             <span class="connection-share-switch"><input type="checkbox" id="mailEnabled"><span aria-hidden="true"></span></span>
                                         </label>
                                         <div class="switch-dependent" data-master="mailEnabled">
@@ -995,7 +995,7 @@
                                             </div>
                                             <div class="security-input-stack">
                                                 <div class="form-group"><label for="mailUser" data-i18n="SMTP 用户名">SMTP 用户名</label><input id="mailUser" placeholder=" "></div>
-                                                <div class="form-group password-field"><label for="mailPass" data-i18n="SMTP 密码">SMTP 密码</label><input id="mailPass" type="password" placeholder=" "><button type="button" id="toggleMailPassword" title="显示/隐藏 SMTP 密码" data-i18n-title="显示/隐藏 SMTP 密码">👁️</button></div>
+                                                <div class="form-group password-field"><label for="mailPass" data-i18n="SMTP 密码">SMTP 密码</label><input id="mailPass" type="password" placeholder=" "><button type="button" id="toggleMailPassword" class="pw-toggle" title="显示/隐藏 SMTP 密码" data-i18n-title="显示/隐藏 SMTP 密码"><svg class="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div>
                                             </div>
                                             <button type="button" class="link-btn" id="revealMailPass" data-i18n="查看已保存 SMTP 密码">查看已保存 SMTP 密码</button>
                                             <p class="field-hint" data-i18n="默认隐藏已保存 SMTP 密码；留空或保持星号不会覆盖已保存密码。">默认隐藏已保存 SMTP 密码；留空或保持星号不会覆盖已保存密码。</p>
@@ -1015,11 +1015,11 @@
                                     <h2 data-i18n="通知选项">通知选项</h2>
                                     <form class="settings-form">
                                         <label class="settings-switch-option" for="notifyLoginSuccess">
-                                            <span class="settings-switch-copy"><strong data-i18n="登录成功通知">登录成功通知</strong><small data-i18n="账号登录成功时发送邮件提醒">账号登录成功时发送邮件提醒</small></span>
+                                            <span class="settings-switch-copy"><strong data-i18n="登录成功通知">登录成功通知</strong></span>
                                             <span class="connection-share-switch"><input type="checkbox" id="notifyLoginSuccess"><span aria-hidden="true"></span></span>
                                         </label>
                                         <label class="settings-switch-option" for="notifyLoginFailure">
-                                            <span class="settings-switch-copy"><strong data-i18n="登录失败通知">登录失败通知</strong><small data-i18n="账号登录失败时发送邮件告警">账号登录失败时发送邮件告警</small></span>
+                                            <span class="settings-switch-copy"><strong data-i18n="登录失败通知">登录失败通知</strong></span>
                                             <span class="connection-share-switch"><input type="checkbox" id="notifyLoginFailure"><span aria-hidden="true"></span></span>
                                         </label>
                                         <label class="settings-switch-option" for="notifyLoginToUser">
@@ -1027,7 +1027,7 @@
                                             <span class="connection-share-switch"><input type="checkbox" id="notifyLoginToUser"><span aria-hidden="true"></span></span>
                                         </label>
                                         <label class="settings-switch-option" for="geoLookupEnabled">
-                                            <span class="settings-switch-copy"><strong data-i18n="IP 地区查询">IP 地区查询</strong><small data-i18n="登录通知中附带 IP 归属地信息">登录通知中附带 IP 归属地信息</small></span>
+                                            <span class="settings-switch-copy"><strong data-i18n="IP 地区查询">IP 地区查询</strong></span>
                                             <span class="connection-share-switch"><input type="checkbox" id="geoLookupEnabled"><span aria-hidden="true"></span></span>
                                         </label>
                                         <div class="form-actions">
@@ -1044,7 +1044,7 @@
                             <div class="security-card-row">
                                 <section class="security-card about-card">
                                     <div class="about-head">
-                                        <div class="about-icon" aria-hidden="true">🌬️</div>
+                                        <div class="about-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg></div>
                                         <div class="about-title">
                                             <h2>Zephyr</h2>
                                             <span class="about-version" id="versionText">--</span>
@@ -1057,7 +1057,7 @@
                                 </section>
                                 <section class="security-card about-card">
                                     <div class="about-head">
-                                        <div class="about-icon" aria-hidden="true">🖥️</div>
+                                        <div class="about-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
                                         <div class="about-title">
                                             <h2 data-i18n="Zephyr Client">Zephyr Client</h2>
                                         </div>
@@ -1386,7 +1386,7 @@
                     <p class="field-hint" data-i18n="服务器列表中的 SSH 连接都可作为跳板机，按上方顺序依次建立多级 SSH 隧道。">服务器列表中的 SSH 连接都可作为跳板机，按上方顺序依次建立多级 SSH 隧道。</p>
                 </div>
             </section>
-            <div class="form-group password-field"><label data-i18n="密码">密码</label><input id="connPassword" type="password"><button type="button" id="toggleConnPassword">👁️</button></div>
+            <div class="form-group password-field"><label data-i18n="密码">密码</label><input id="connPassword" type="password"><button type="button" id="toggleConnPassword" class="pw-toggle"><svg class="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div>
             <div class="form-group connection-secret-reveal" id="connSecretRevealGroup"><button type="button" class="link-btn" id="revealConnSecrets" data-i18n="查看已保存密码/私钥">查看已保存密码/私钥</button><p class="field-hint" id="connSecretRevealHint" data-i18n="编辑时默认隐藏敏感信息；留空或保持星号不会覆盖已保存凭据。">编辑时默认隐藏敏感信息；留空或保持星号不会覆盖已保存凭据。</p></div>
             <div class="form-group"><label data-i18n="私钥">私钥</label><textarea id="connPrivateKey" placeholder="-----BEGIN RSA PRIVATE KEY-----"></textarea></div>
             <section class="rdp-settings-panel force-hidden" id="rdpSettingsPanel" aria-label="RDP 设置" data-i18n-aria-label="RDP 设置">

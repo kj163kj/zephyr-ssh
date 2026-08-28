@@ -219,7 +219,7 @@ function applyTheme(theme, { persist = false } = {}) {
     applyZephyrColorScheme(publicSettings.appearance || {}, { theme, page: 'login' });
     setFavicon((publicSettings.appearance || {}).brandIcon || DEFAULT_BRAND_ICON);
     if (persist) localStorage.setItem('zephyr-theme', theme);
-    [themeToggleLogin, themeToggleChange, themeToggleTotp, themeToggleForgot].filter(Boolean).forEach((btn) => { btn.textContent = theme === 'dark' ? '☀️' : '🌙'; });
+    [themeToggleLogin, themeToggleChange, themeToggleTotp, themeToggleForgot].filter(Boolean).forEach((btn) => { btn.classList.toggle('theme-dark', theme === 'dark'); });
 }
 
 applyTheme(getPreferredTheme());
