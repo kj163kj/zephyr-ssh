@@ -2524,6 +2524,18 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 /* 个性化设置：卡片化布局，表单解除 420px 宽度限制 */
 .appearance-cards-form { max-width: none; margin-bottom: 0; display: grid; gap: 14px; }
 #settings-appearance .appearance-cards-form + .appearance-cards-form { margin-top: 14px; }
+/* 卡片内部呼吸感：统一栅格间距，替代紧贴的块级堆叠 */
+#settings-appearance .security-card { padding: 20px; display: grid; gap: 14px; align-content: start; }
+#settings-appearance .security-card > h2 { margin: 0; }
+#settings-appearance .security-card > .settings-switch-option { margin: 0; }
+#settings-appearance .security-card > .field-hint { margin: 0; }
+#settings-appearance .security-card > .form-actions,
+#settings-appearance .security-card .form-actions { margin: 4px 0 0; }
+/* 大屏下设置按钮两列排布，避免单按钮拉满整行 */
+@media (min-width: 761px) {
+    form.settings-form .form-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.settings-form .form-actions .btn:only-child { grid-column: 1 / -1; }
 .settings-form .form-actions {
     display: grid;
     grid-template-columns: 1fr;

@@ -1077,7 +1077,6 @@ function applyTheme(theme, { persist = false } = {}) {
     if (terminalTabs.length) renderTerminalSmartbar();
     if (persist || getAppearance().autoThemeEnabled === false) localStorage.setItem('zephyr-theme', theme);
     $('#appThemeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
-    $('#settingsThemeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
     syncAppearanceSchemeControls();
     console.debug('[appearance-client]', 'theme transition applied', { previousTheme, theme, changed });
     broadcastThemeToTerminals(theme);
@@ -13033,7 +13032,7 @@ function bindEvents() {
         scheduleWorkspaceSave('settings-tab');
     }));
     ['view-settings', 'view-dashboard', 'view-activity'].forEach((id) => document.getElementById(id)?.addEventListener('scroll', () => scheduleWorkspaceSave(`${id}-scroll`), { passive: true }));
-    $('#appThemeToggle').addEventListener('click', () => toggleTheme().catch((err) => toast(err.message))); $('#settingsThemeToggle').addEventListener('click', () => toggleTheme().catch((err) => toast(err.message))); $('#logoutBtn')?.addEventListener('click', async () => { await api('/api/auth/logout', { method: 'POST' }); location.href = '/'; });
+    $('#appThemeToggle').addEventListener('click', () => toggleTheme().catch((err) => toast(err.message))); $('#logoutBtn')?.addEventListener('click', async () => { await api('/api/auth/logout', { method: 'POST' }); location.href = '/'; });
     bindLocaleSelects();
     $('#notesSettingsForm')?.addEventListener('submit', saveNotesSettings);
     $('#webDavSettingsForm')?.addEventListener('submit', (event) => {
