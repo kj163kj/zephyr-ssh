@@ -2509,14 +2509,15 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 /* 紧凑型开关行（无说明文案，如 SSL/TLS） */
 .settings-switch-option-sm { min-height: 48px; padding: 8px 13px; }
 /* 关于页卡片 */
-.about-card .about-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-.about-card .about-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, var(--surface)); font-size: 22px; }
-.about-card .about-title { display: grid; gap: 4px; min-width: 0; }
-.about-card .about-title h2 { margin: 0; font-size: 16px; }
-.about-card .about-version { justify-self: start; padding: 2px 8px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); border-radius: var(--radius-pill); background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent-hover); font-size: 11px; font-weight: 600; letter-spacing: .02em; }
-.about-card .about-desc { margin: 0 0 12px; font-size: 13px; line-height: 1.5; }
-.about-card .about-links { display: flex; gap: 8px; flex-wrap: wrap; }
-.about-card .about-link-btn { display: inline-flex; align-items: center; text-decoration: none; }
+/* 图标头部（关于页 + 数据管理卡共用） */
+.about-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.about-icon { display: grid; place-items: center; width: 44px; height: 44px; flex: 0 0 auto; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, var(--surface)); font-size: 22px; }
+.about-title { display: grid; gap: 4px; min-width: 0; }
+.about-title h2 { margin: 0; font-size: 16px; }
+.about-version { justify-self: start; padding: 2px 8px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); border-radius: var(--radius-pill); background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent-hover); font-size: 11px; font-weight: 600; letter-spacing: .02em; }
+.about-desc { margin: 0 0 12px; font-size: 13px; line-height: 1.5; }
+.about-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.about-link-btn { display: inline-flex; align-items: center; text-decoration: none; }
 /* 设置面板裸标签层级：小号次级文字，与开关行/浮动标签形成对比 */
 .settings-panel .settings-form > label:not(.check-line):not(.settings-switch-option):not(.settings-switch-option-sm) { margin: 4px 0 -4px; color: var(--text-secondary); font-size: 13px; }
 .settings-panel .settings-form > h3 { margin: 14px 0 2px; }
@@ -2538,28 +2539,30 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .settings-form .form-actions .btn:only-child { grid-column: 1 / -1; }
 /* Zephyr Client：卡片分区 + 内部呼吸感 */
 #settings-agent.active { display: grid; gap: 14px; align-content: start; }
+/* 数据管理：内容不等高，取消两列等高拉伸避免空白 */
+#settings-data .security-card-row { align-items: start; }
 #settings-agent .security-card { padding: 20px; display: grid; gap: 12px; align-content: start; }
 #settings-agent .security-card > h2 { margin: 0; }
 #settings-agent .security-card > .muted { margin: 0; max-width: 720px; line-height: 1.55; }
 #settings-agent .security-card > .agent-token-actions { margin: 0; }
 #settings-agent .security-card > .agent-token-list { margin: 0; }
 #settings-agent .security-card > .agent-connect-info { max-width: none; }
-/* 数据管理：区块升级为卡片 */
+/* 数据管理：区块升级为卡片（#settings-data 前缀压过文件后部旧 padding 规则） */
 .data-settings-stack { gap: 14px; }
-.data-settings-section {
+#settings-data .data-settings-section {
     min-width: 0;
     padding: 20px;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface);
     display: grid;
-    gap: 12px;
+    gap: 14px;
     align-content: start;
 }
-.data-settings-section + .data-settings-section { padding-top: 20px; }
-.data-settings-section > h2 { margin: 0; }
-.data-settings-section > .muted { margin: 0; }
-.data-settings-section > .field-hint { margin: 0; }
+#settings-data .data-settings-section + .data-settings-section { padding-top: 20px; }
+#settings-data .data-settings-section > h2 { margin: 0; font-size: 16px; }
+#settings-data .data-settings-section > .muted { margin: 0; }
+#settings-data .data-settings-section > .field-hint { margin: 0; }
 .data-settings-section .data-import-form { margin-top: 0; }
 .data-settings-section .webdav-heading { margin-bottom: 0; }
 .data-settings-section .webdav-settings-form { margin-bottom: 0; }
