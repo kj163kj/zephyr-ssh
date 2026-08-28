@@ -402,8 +402,58 @@
                                 </section>
                             </div>
                              <div id="platformSecuritySettings">
-                                 <h2 data-i18n="IP 白名单与防爆破">IP 白名单与防爆破</h2><form id="securityPolicyForm" class="settings-form"><label class="check-line"><input type="checkbox" id="ipWhitelistEnabled"> <span data-i18n="启用 IP 白名单">启用 IP 白名单</span></label><textarea id="ipWhitelist" placeholder="每行一个 IP 或 CIDR，例如 192.168.1.0/24" data-i18n-placeholder="每行一个 IP 或 CIDR，例如 192.168.1.0/24"></textarea><label class="check-line"><input type="checkbox" id="bruteForceEnabled"> <span data-i18n="启用防爆破封禁">启用防爆破封禁</span></label><input id="bruteForceMaxFailures" type="number" min="1" placeholder="失败次数" data-i18n-placeholder="失败次数"><input id="bruteForceBanMinutes" type="number" min="1" placeholder="封禁分钟" data-i18n-placeholder="封禁分钟"><button class="btn btn-primary" data-i18n="保存安全策略">保存安全策略</button></form><div class="mini-list" id="ipBanList"></div>
-                                 <h2>CAPTCHA</h2><form id="captchaForm" class="settings-form"><label class="check-line"><input type="checkbox" id="captchaEnabled"> <span data-i18n="启用 CAPTCHA">启用 CAPTCHA</span></label><select id="captchaProvider"><option value="turnstile">Cloudflare Turnstile</option><option value="hcaptcha">hCaptcha</option><option value="google">Google reCAPTCHA v2</option><option value="tencent" data-i18n="腾讯云验证码">腾讯云验证码</option><option value="aliyun" data-i18n="阿里云验证码 2.0">阿里云验证码 2.0</option></select><input id="captchaSiteKey" placeholder="Site Key / AppId / CaptchaId"><div class="form-group password-field"><input id="captchaSecretKey" type="password" placeholder="Secret Key / AppSecretKey"><button type="button" id="toggleCaptchaSecret" title="显示/隐藏 CAPTCHA 密钥" data-i18n-title="显示/隐藏 CAPTCHA 密钥">👁️</button></div><button type="button" class="link-btn" id="revealCaptchaSecret" data-i18n="查看已保存 CAPTCHA 密钥">查看已保存 CAPTCHA 密钥</button><p class="field-hint" data-i18n="默认隐藏已保存 CAPTCHA 密钥；留空或保持星号不会覆盖已保存密钥。查看时如已开启 TOTP 需输入动态验证码，否则输入当前登录密码。">默认隐藏已保存 CAPTCHA 密钥；留空或保持星号不会覆盖已保存密钥。查看时如已开启 TOTP 需输入动态验证码，否则输入当前登录密码。</p><button class="btn btn-primary" data-i18n="保存 CAPTCHA">保存 CAPTCHA</button></form>
+                                 <div class="security-card-row">
+                                     <section class="security-card">
+                                         <h2 data-i18n="IP 白名单与防爆破">IP 白名单与防爆破</h2>
+                                         <form id="securityPolicyForm" class="settings-form">
+                                             <label class="settings-switch-option" for="ipWhitelistEnabled">
+                                                 <span class="settings-switch-copy"><strong data-i18n="启用 IP 白名单">启用 IP 白名单</strong><small data-i18n="仅名单内 IP 可登录本站">仅名单内 IP 可登录本站</small></span>
+                                                 <span class="connection-share-switch"><input type="checkbox" id="ipWhitelistEnabled"><span aria-hidden="true"></span></span>
+                                             </label>
+                                             <div class="switch-dependent" data-needs="ip-whitelist">
+                                                 <div class="security-input-stack">
+                                                     <div class="form-group">
+                                                         <label for="ipWhitelist" data-i18n="白名单 IP 列表">白名单 IP 列表</label>
+                                                         <textarea id="ipWhitelist" rows="3" placeholder=" " aria-describedby="ipWhitelistHint"></textarea>
+                                                     </div>
+                                                 </div>
+                                                 <p class="field-hint" id="ipWhitelistHint" data-i18n="每行一个 IP 或 CIDR，例如 192.168.1.0/24">每行一个 IP 或 CIDR，例如 192.168.1.0/24</p>
+                                             </div>
+                                             <label class="settings-switch-option" for="bruteForceEnabled">
+                                                 <span class="settings-switch-copy"><strong data-i18n="启用防爆破封禁">启用防爆破封禁</strong><small data-i18n="连续失败自动封禁来源 IP">连续失败自动封禁来源 IP</small></span>
+                                                 <span class="connection-share-switch"><input type="checkbox" id="bruteForceEnabled"><span aria-hidden="true"></span></span>
+                                             </label>
+                                             <div class="switch-dependent" data-needs="brute-force">
+                                                 <div class="security-input-stack security-input-duo">
+                                                     <div class="form-group"><label for="bruteForceMaxFailures" data-i18n="失败次数">失败次数</label><input id="bruteForceMaxFailures" type="number" min="1" placeholder=" "></div>
+                                                     <div class="form-group"><label for="bruteForceBanMinutes" data-i18n="封禁分钟">封禁分钟</label><input id="bruteForceBanMinutes" type="number" min="1" placeholder=" "></div>
+                                                 </div>
+                                             </div>
+                                             <button class="btn btn-primary" data-i18n="保存安全策略">保存安全策略</button>
+                                         </form>
+                                         <div class="mini-list" id="ipBanList"></div>
+                                     </section>
+                                     <section class="security-card">
+                                         <h2>CAPTCHA</h2>
+                                         <form id="captchaForm" class="settings-form">
+                                             <label class="settings-switch-option" for="captchaEnabled">
+                                                 <span class="settings-switch-copy"><strong data-i18n="启用 CAPTCHA">启用 CAPTCHA</strong><small data-i18n="登录时要求人机验证">登录时要求人机验证</small></span>
+                                                 <span class="connection-share-switch"><input type="checkbox" id="captchaEnabled"><span aria-hidden="true"></span></span>
+                                             </label>
+                                             <div class="switch-dependent" data-needs="captcha">
+                                                 <label class="security-field-label" for="captchaProvider" data-i18n="验证码服务">验证码服务</label>
+                                                 <select id="captchaProvider"><option value="turnstile">Cloudflare Turnstile</option><option value="hcaptcha">hCaptcha</option><option value="google">Google reCAPTCHA v2</option><option value="tencent" data-i18n="腾讯云验证码">腾讯云验证码</option><option value="aliyun" data-i18n="阿里云验证码 2.0">阿里云验证码 2.0</option></select>
+                                                 <div class="security-input-stack">
+                                                     <div class="form-group"><label for="captchaSiteKey" data-i18n="Site Key / AppId / CaptchaId">Site Key / AppId / CaptchaId</label><input id="captchaSiteKey" placeholder=" "></div>
+                                                     <div class="form-group password-field"><label for="captchaSecretKey" data-i18n="Secret Key / AppSecretKey">Secret Key / AppSecretKey</label><input id="captchaSecretKey" type="password" placeholder=" "><button type="button" id="toggleCaptchaSecret" title="显示/隐藏 CAPTCHA 密钥" data-i18n-title="显示/隐藏 CAPTCHA 密钥">👁️</button></div>
+                                                 </div>
+                                                 <button type="button" class="link-btn" id="revealCaptchaSecret" data-i18n="查看已保存 CAPTCHA 密钥">查看已保存 CAPTCHA 密钥</button>
+                                                 <p class="field-hint" data-i18n="默认隐藏已保存 CAPTCHA 密钥；留空或保持星号不会覆盖已保存密钥。查看时如已开启 TOTP 需输入动态验证码，否则输入当前登录密码。">默认隐藏已保存 CAPTCHA 密钥；留空或保持星号不会覆盖已保存密钥。查看时如已开启 TOTP 需输入动态验证码，否则输入当前登录密码。</p>
+                                             </div>
+                                             <button class="btn btn-primary" data-i18n="保存 CAPTCHA">保存 CAPTCHA</button>
+                                         </form>
+                                     </section>
+                                 </div>
                              </div>
                         </div>
                         <div class="settings-panel" id="settings-appearance">

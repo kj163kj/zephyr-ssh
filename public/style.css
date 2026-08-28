@@ -2423,6 +2423,43 @@ body.terminal-custom-fullscreen-open.terminal-fullscreen-exiting .main-nav {
 .security-input-stack > .form-group:only-child input { border-radius: 12px; }
 .security-card .mini-list { margin-bottom: 0; }
 .security-card > .settings-switch-option { margin: 0; }
+.security-card .settings-form > .settings-switch-option { margin: 0; }
+/* 开关从属字段：开关关闭时整体降透明度并禁用交互，开启时 200ms ease-smooth 过渡回来 */
+.security-card .settings-form > .switch-dependent { display: grid; gap: 10px; transition: opacity 200ms var(--ease-smooth); }
+.security-card:has(#ipWhitelistEnabled:not(:checked)) [data-needs="ip-whitelist"],
+.security-card:has(#bruteForceEnabled:not(:checked)) [data-needs="brute-force"],
+.security-card:has(#captchaEnabled:not(:checked)) [data-needs="captcha"] { opacity: .45; pointer-events: none; }
+.security-field-label { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.4; }
+/* 防爆破双列数字输入：保持浮动标签样式，仅改布局 */
+.security-input-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.security-input-duo > .form-group { margin-bottom: 0; }
+.security-input-duo > .form-group:not(:first-child) { margin-top: 0; }
+.security-input-duo > .form-group input { border-radius: 12px; }
+/* 浮动标签延伸到 textarea（白名单 IP 列表）；标签锚定首行而非容器中点 */
+.security-input-stack > .form-group:has(textarea) label { top: 36px; }
+.security-input-stack > .form-group:has(textarea:focus) label,
+.security-input-stack > .form-group:has(textarea:not(:placeholder-shown)) label {
+    color: var(--text-secondary);
+    font-size: 12px;
+    transform: translateY(-26px);
+}
+.security-input-stack > .form-group textarea {
+    min-height: 92px;
+    padding: 26px 15px 10px;
+    border-color: color-mix(in srgb, var(--text-secondary) 72%, var(--border));
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+}
+.security-input-stack > .form-group textarea:hover { border-color: color-mix(in srgb, var(--text-secondary) 88%, var(--border)); }
+.security-input-stack > .form-group textarea:focus {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--surface) 96%, transparent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+}
 .settings-form .form-actions {
     display: grid;
     grid-template-columns: 1fr;
