@@ -463,8 +463,9 @@
                                     <span class="settings-switch-copy"><strong data-i18n="会话持久化">会话持久化</strong><small data-i18n="关闭页面后再次打开时，恢复之前的页面和会话。">关闭页面后再次打开时，恢复之前的页面和会话。</small></span>
                                     <span class="connection-share-switch"><input type="checkbox" id="sessionPersistenceEnabled" checked><span aria-hidden="true"></span></span>
                                 </label>
-                                <label data-i18n="左上角标题">左上角标题</label>
-                                <input id="brandNameInput" maxlength="40" placeholder="Zephyr">
+                                <div class="security-input-stack">
+                                    <div class="form-group"><label for="brandNameInput" data-i18n="左上角标题">左上角标题</label><input id="brandNameInput" maxlength="40" placeholder=" "></div>
+                                </div>
                                 <label data-i18n="左上角图标">左上角图标</label>
                                 <div class="brand-upload-row">
                                     <div class="brand-icon-preview" id="brandIconPreview" aria-label="当前图标" data-i18n-aria-label="当前图标">🌬️</div>
@@ -931,15 +932,95 @@
                                 </section>
                             </div>
                         </div>
-                        <div class="settings-panel" id="settings-mail"><h2 data-i18n="邮件通知">邮件通知</h2><form id="mailForm" class="settings-form"><label class="check-line"><input type="checkbox" id="mailEnabled"> <span data-i18n="启用邮件通知">启用邮件通知</span></label><input id="mailHost" placeholder="SMTP Host"><input id="mailPort" type="number" placeholder="SMTP Port"><label class="check-line"><input type="checkbox" id="mailSecure"> SSL/TLS</label><input id="mailUser" placeholder="SMTP 用户名" data-i18n-placeholder="SMTP 用户名"><div class="form-group password-field"><input id="mailPass" type="password" placeholder="SMTP 密码" data-i18n-placeholder="SMTP 密码"><button type="button" id="toggleMailPassword" title="显示/隐藏 SMTP 密码" data-i18n-title="显示/隐藏 SMTP 密码">👁️</button></div><button type="button" class="link-btn" id="revealMailPass" data-i18n="查看已保存 SMTP 密码">查看已保存 SMTP 密码</button><p class="field-hint" data-i18n="默认隐藏已保存 SMTP 密码；留空或保持星号不会覆盖已保存密码。">默认隐藏已保存 SMTP 密码；留空或保持星号不会覆盖已保存密码。</p><input id="mailFrom" placeholder="发件人" data-i18n-placeholder="发件人"><input id="mailAdminEmail" type="email" placeholder="后台管理员邮箱" data-i18n-placeholder="后台管理员邮箱"><label class="check-line"><input type="checkbox" id="notifyLoginSuccess"> <span data-i18n="登录成功通知">登录成功通知</span></label><label class="check-line"><input type="checkbox" id="notifyLoginFailure"> <span data-i18n="登录失败通知">登录失败通知</span></label><label class="check-line"><input type="checkbox" id="notifyLoginToUser"> <span data-i18n="给登录用户发送通知">给登录用户发送通知</span></label><label class="check-line"><input type="checkbox" id="geoLookupEnabled"> <span data-i18n="IP 地区查询">IP 地区查询</span></label><button class="btn btn-primary" type="submit" data-i18n="保存邮件设置">保存邮件设置</button><button class="btn" type="button" id="testMailBtn" data-i18n="测试邮件">测试邮件</button></form></div>
+                        <div class="settings-panel" id="settings-mail">
+                            <div class="security-card-row">
+                                <section class="security-card">
+                                    <h2 data-i18n="SMTP 服务器">SMTP 服务器</h2>
+                                    <form id="mailForm" class="settings-form">
+                                        <label class="settings-switch-option" for="mailEnabled">
+                                            <span class="settings-switch-copy"><strong data-i18n="启用邮件通知">启用邮件通知</strong><small data-i18n="通过 SMTP 发送登录提醒与系统邮件">通过 SMTP 发送登录提醒与系统邮件</small></span>
+                                            <span class="connection-share-switch"><input type="checkbox" id="mailEnabled"><span aria-hidden="true"></span></span>
+                                        </label>
+                                        <div class="switch-dependent" data-master="mailEnabled">
+                                            <div class="security-input-stack mail-host-row">
+                                                <div class="form-group"><label for="mailHost" data-i18n="SMTP Host">SMTP Host</label><input id="mailHost" placeholder=" "></div>
+                                                <div class="form-group"><label for="mailPort" data-i18n="SMTP Port">SMTP Port</label><input id="mailPort" type="number" placeholder=" "></div>
+                                            </div>
+                                            <div class="security-input-stack">
+                                                <div class="form-group"><label for="mailUser" data-i18n="SMTP 用户名">SMTP 用户名</label><input id="mailUser" placeholder=" "></div>
+                                                <div class="form-group password-field"><label for="mailPass" data-i18n="SMTP 密码">SMTP 密码</label><input id="mailPass" type="password" placeholder=" "><button type="button" id="toggleMailPassword" title="显示/隐藏 SMTP 密码" data-i18n-title="显示/隐藏 SMTP 密码">👁️</button></div>
+                                            </div>
+                                            <button type="button" class="link-btn" id="revealMailPass" data-i18n="查看已保存 SMTP 密码">查看已保存 SMTP 密码</button>
+                                            <p class="field-hint" data-i18n="默认隐藏已保存 SMTP 密码；留空或保持星号不会覆盖已保存密码。">默认隐藏已保存 SMTP 密码；留空或保持星号不会覆盖已保存密码。</p>
+                                            <div class="security-input-stack">
+                                                <div class="form-group"><label for="mailFrom" data-i18n="发件人">发件人</label><input id="mailFrom" placeholder=" "></div>
+                                                <div class="form-group"><label for="mailAdminEmail" data-i18n="后台管理员邮箱">后台管理员邮箱</label><input id="mailAdminEmail" type="email" placeholder=" "></div>
+                                            </div>
+                                            <label class="settings-switch-option settings-switch-option-sm" for="mailSecure">
+                                                <span class="settings-switch-copy"><strong>SSL/TLS</strong></span>
+                                                <span class="connection-share-switch"><input type="checkbox" id="mailSecure"><span aria-hidden="true"></span></span>
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-primary" type="submit" data-i18n="保存邮件设置">保存邮件设置</button>
+                                    </form>
+                                </section>
+                                <section class="security-card">
+                                    <h2 data-i18n="通知选项">通知选项</h2>
+                                    <form class="settings-form">
+                                        <label class="settings-switch-option" for="notifyLoginSuccess">
+                                            <span class="settings-switch-copy"><strong data-i18n="登录成功通知">登录成功通知</strong><small data-i18n="账号登录成功时发送邮件提醒">账号登录成功时发送邮件提醒</small></span>
+                                            <span class="connection-share-switch"><input type="checkbox" id="notifyLoginSuccess"><span aria-hidden="true"></span></span>
+                                        </label>
+                                        <label class="settings-switch-option" for="notifyLoginFailure">
+                                            <span class="settings-switch-copy"><strong data-i18n="登录失败通知">登录失败通知</strong><small data-i18n="账号登录失败时发送邮件告警">账号登录失败时发送邮件告警</small></span>
+                                            <span class="connection-share-switch"><input type="checkbox" id="notifyLoginFailure"><span aria-hidden="true"></span></span>
+                                        </label>
+                                        <label class="settings-switch-option" for="notifyLoginToUser">
+                                            <span class="settings-switch-copy"><strong data-i18n="给登录用户发送通知">给登录用户发送通知</strong><small data-i18n="通知发送给登录者本人邮箱">通知发送给登录者本人邮箱</small></span>
+                                            <span class="connection-share-switch"><input type="checkbox" id="notifyLoginToUser"><span aria-hidden="true"></span></span>
+                                        </label>
+                                        <label class="settings-switch-option" for="geoLookupEnabled">
+                                            <span class="settings-switch-copy"><strong data-i18n="IP 地区查询">IP 地区查询</strong><small data-i18n="登录通知中附带 IP 归属地信息">登录通知中附带 IP 归属地信息</small></span>
+                                            <span class="connection-share-switch"><input type="checkbox" id="geoLookupEnabled"><span aria-hidden="true"></span></span>
+                                        </label>
+                                        <div class="form-actions">
+                                            <button class="btn btn-primary" type="submit" data-i18n="保存邮件设置">保存邮件设置</button>
+                                            <button class="btn" type="button" id="testMailBtn" data-i18n="测试邮件">测试邮件</button>
+                                        </div>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
                         <div class="settings-panel" id="settings-notes"><h2 data-i18n="笔记功能">笔记功能</h2><form id="notesSettingsForm" class="settings-form"><label class="check-line"><input type="checkbox" id="notesEnabledInput"> <span data-i18n="启用笔记功能">启用笔记功能</span></label><p class="field-hint" data-i18n="关闭后导航栏不显示笔记入口，AI 笔记工具也一并禁用。">关闭后导航栏不显示笔记入口，AI 笔记工具也一并禁用。</p><button class="btn btn-primary" type="submit" data-i18n="保存">保存</button></form></div>
                         <div class="settings-panel force-hidden" id="settings-admin"><h2 id="adminPanelTitle" data-i18n="多用户管理">多用户管理</h2><div class="admin-toolbar"><button class="btn btn-primary admin-add-btn" type="button" id="adminAddUserBtn"><span class="admin-icon-inline"></span><span data-i18n="添加用户">添加用户</span></button></div><div class="admin-user-list" id="adminUserList"></div></div>
                         <div class="settings-panel" id="settings-about">
-                            <h2 data-i18n="关于 Zephyr">关于 Zephyr</h2>
-                            <p><span data-i18n="版本：">版本：</span><strong id="versionText">--</strong></p>
-                            <p class="muted"><a class="muted-link" href="https://github.com/Lanlan13-14/zephyr-ssh" target="_blank" rel="noopener noreferrer" data-i18n="GitHub 地址">GitHub 地址</a></p>
-                            <h2 data-i18n="Zephyr Client">Zephyr Client</h2>
-                            <p id="aboutAgentReleaseLine"><a class="muted-link" id="aboutAgentReleaseLink" href="https://github.com/Lanlan13-14/zephyr-ssh/releases" target="_blank" rel="noopener noreferrer" data-i18n="查看 Zephyr Client 发布页">查看 Zephyr Client 发布页</a></p>
+                            <div class="security-card-row">
+                                <section class="security-card about-card">
+                                    <div class="about-head">
+                                        <div class="about-icon" aria-hidden="true">🌬️</div>
+                                        <div class="about-title">
+                                            <h2>Zephyr</h2>
+                                            <span class="about-version" id="versionText">--</span>
+                                        </div>
+                                    </div>
+                                    <p class="muted about-desc" data-i18n="安全 WebSSH 终端管理系统，支持 Passkey、TOTP 与加密备份。">安全 WebSSH 终端管理系统，支持 Passkey、TOTP 与加密备份。</p>
+                                    <div class="about-links">
+                                        <a class="btn about-link-btn" href="https://github.com/Lanlan13-14/zephyr-ssh" target="_blank" rel="noopener noreferrer" data-i18n="GitHub 地址">GitHub 地址</a>
+                                    </div>
+                                </section>
+                                <section class="security-card about-card">
+                                    <div class="about-head">
+                                        <div class="about-icon" aria-hidden="true">🖥️</div>
+                                        <div class="about-title">
+                                            <h2 data-i18n="Zephyr Client">Zephyr Client</h2>
+                                        </div>
+                                    </div>
+                                    <p class="muted about-desc" id="aboutAgentReleaseLine"><a class="muted-link" id="aboutAgentReleaseLink" href="https://github.com/Lanlan13-14/zephyr-ssh/releases" target="_blank" rel="noopener noreferrer" data-i18n="查看 Zephyr Client 发布页">查看 Zephyr Client 发布页</a></p>
+                                    <div class="about-links">
+                                        <a class="btn about-link-btn" id="aboutAgentReleaseBtn" href="https://github.com/Lanlan13-14/zephyr-ssh/releases" target="_blank" rel="noopener noreferrer" data-i18n="查看发布页">查看发布页</a>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
                     </div>
                     <!-- AI 模型二级页：某供应商的模型列表（截图 1000067615） -->
