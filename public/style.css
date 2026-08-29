@@ -16539,3 +16539,54 @@ body.terminal-card-flip-handoff.terminal-mode .terminal-smartbar {
         transform: translateY(-50%) scale(.92) !important;
     }
 }
+
+/* ============================================================
+   第二步：卡片降噪 —— 卡内元素扁平化，层级靠排版不靠框
+   （本块位于文件末尾，确保覆盖前部旧规则）
+   ============================================================ */
+/* B. 卡片本体：边框减淡一档，圆角对齐 --radius（内圆角 10-12 < 外 14） */
+.security-card {
+    border-color: color-mix(in srgb, var(--border) 55%, transparent);
+    border-radius: var(--radius);
+}
+#settings-data .data-settings-section {
+    border-color: color-mix(in srgb, var(--border) 55%, transparent);
+    border-radius: var(--radius);
+}
+/* A1. 开关行扁平化：卡内去边框/底色/圆角，行距收紧 */
+:is(.security-card, .data-settings-section) .settings-switch-option {
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    padding: 11px 0;
+    min-height: 0;
+}
+:is(.security-card, .data-settings-section) .settings-switch-option:hover {
+    border: 0;
+    background: color-mix(in srgb, var(--text-secondary) 3%, transparent);
+}
+:is(.security-card, .data-settings-section) .settings-switch-option:has(input:checked) {
+    border: 0;
+    background: transparent;
+}
+:is(.security-card, .data-settings-section) .settings-switch-option:has(input:focus-visible) {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-control);
+}
+/* 相邻开关行之间 hairline 分隔（仅相邻同级生效） */
+:is(.security-card, .data-settings-section) .settings-switch-option + .settings-switch-option {
+    border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+}
+/* A2. mini-list 空状态去虚线框 */
+:is(.security-card, .data-settings-section) .mini-list > .muted:only-child {
+    border: 0;
+    background: transparent;
+    padding: 8px 0;
+    min-height: 0;
+    text-align: left;
+}
+/* A3. 输入组描边减淡至标准边框 */
+:is(.security-card, .data-settings-section) .security-input-stack > .form-group input,
+:is(.security-card, .data-settings-section) .security-input-stack > .form-group textarea {
+    border-color: var(--border);
+}
